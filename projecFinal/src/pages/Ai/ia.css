@@ -1,46 +1,53 @@
+/* ia.css */
+
 body {
   margin: 0;
-  overflow: hidden; /* Esconde a barra de rolagem */
 }
 
 .center-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
   background-color: aliceblue;
-  height: 100vh; /* Ocupa a altura da tela */
+  height: 80vh;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .container {
   display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  padding: 20px;
+  overflow-x: hidden;
 }
 
 .region {
-  flex: 1;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-bottom: 15px;
 }
 
 .button-region {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .titulo {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: black;
 }
 
 .input-ia {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
+  padding: 5px; /* Reduz o padding */
+  border: 1px solid #ccc;
   border-radius: 5px;
+  margin-bottom: 5px; /* Reduz o espaçamento inferior */
+  resize: none;
+  font-size: 14px; /* Reduz o tamanho da fonte */
 }
 
 .botao {
@@ -48,8 +55,8 @@ body {
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 5px 10px; /* Reduz o padding */
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -60,20 +67,16 @@ body {
 
 .resposta {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
+  padding: 200px;
   border-radius: 5px;
-  height: 90%;
-  background-color: white;
+  overflow-y: auto;
 }
 
-.resposta h2 {
-  font-size: 18px;
-  margin-bottom: 5px;
+/* Posiciona o campo de resposta acima do campo de pergunta */
+.input-region {
+  order: 2;
 }
 
-.resposta p {
-  margin: 0;
-  font-size: 16px;
+.resposta-region {
+  order: 1;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./stopwatch.module.css"; // Importe o estilo do módulo
+import "./stopwatch.css"; // Importe o estilo do módulo
 
 const Stopwatch = () => {
   const [time, setTime] = useState(0);
@@ -31,18 +31,18 @@ const Stopwatch = () => {
   };
 
   return (
-    <div className={styles.timerContainer}>
-      <div className={styles.stopwatch}>
-        <p className={styles.stopwatchTime}>
+    <div className="timerContainer">
+      <div className="stopwatch">
+        <p className="stopwatchTime">
           {hours}:{minutes.toString().padStart(2, "0")}:
           {seconds.toString().padStart(2, "0")}:
           {milliseconds.toString().padStart(2, "0")}
         </p>
-        <div className={styles.stopwatchButtons}>
-          <button className={styles.stopwatchButton} onClick={startStop}>
+        <div className="stopwatchButtons">
+          <button className="stopwatchButton" onClick={startStop}>
             {isRunning ? "Stop" : "Start"}
           </button>
-          <button className={styles.stopwatchButton} onClick={reset}>
+          <button className="stopwatchButton" onClick={reset}>
             Reset
           </button>
         </div>

@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/Home";
 import Ai from "./pages/Ai";
+import WhitePage from "./pages/WhitePage";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/ia",
     element: <Ai />,
+  },
+  {
+    path: "/white",
+    element: <WhitePage />,
   },
 ]);
 

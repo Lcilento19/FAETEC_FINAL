@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ia.css";
-import Stopwatch from "../../components/cronometro";
+import Stopwatch from "../../components/StopWatch";
 
 function OpenAIComponent() {
   const [prompt, setPrompt] = useState("");

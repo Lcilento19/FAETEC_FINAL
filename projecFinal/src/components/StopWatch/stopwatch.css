@@ -1,12 +1,11 @@
-/* stopwatch.module.css */
+/* stopwatch.css */
+
 .timerContainer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  background-color: aliceblue;
-  padding: 20px;
-  padding-left: 10%;
-  text-align: center;
+  position: fixed; /* Posição fixa na tela */
+  bottom: 0; /* Fixa no canto inferior */
+  right: 0; /* Fixa no canto direito */
+  margin: 20px; /* Margem para afastar um pouco das bordas */
+  z-index: 9999; /* Garante que fique acima de outros elementos */
 }
 
 .stopwatch {
@@ -15,7 +14,6 @@
   align-items: flex-end;
   padding: 20px;
   border-radius: 5px;
-  margin-left: auto;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

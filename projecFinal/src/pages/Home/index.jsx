@@ -1,4 +1,4 @@
-import Stopwatch from "../../components/cronometro";
+import Stopwatch from "../../components/StopWatch";
 import "./home.css";
 
 export default function Home() {
@@ -8,6 +8,7 @@ export default function Home() {
         <h1 className="titulo">Página Inicial</h1>
       </div>
       <Stopwatch />
+
     </>
   );
 }
