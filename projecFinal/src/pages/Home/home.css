@@ -1,0 +1,7 @@
+.home-container {
+  background-color: aliceblue;
+  height: 80vh; /* Ocupa a altura da tela */
+}
+body {
+  background-color: black;
+}
