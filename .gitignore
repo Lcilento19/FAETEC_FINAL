@@ -1,2 +1,7 @@
 node_modules
-projecFinal/node_modules/acorn/CHANGELOG.md
+projecFinal/node_modules/*
+projecFinal/node_modules
+
+Api/node_modules/*
+Api/node_modules
+
