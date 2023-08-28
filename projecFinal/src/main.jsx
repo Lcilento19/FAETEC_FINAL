@@ -4,20 +4,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/Home";
 import Ai from "./pages/Ai";
-import WhitePage from "./pages/WhitePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/home",
     element: <Home />,
   },
   {
     path: "/ia",
     element: <Ai />,
-  },
-  {
-    path: "/white",
-    element: <WhitePage />,
   },
 ]);
 
