@@ -1,12 +1,16 @@
 /* stopwatch.css */
 
 .timerContainer {
-  position: fixed; /* Posição fixa na tela */
-  bottom: 0; /* Fixa no canto inferior */
-  right: 0; /* Fixa no canto direito */
-  margin: 20px; /* Margem para afastar um pouco das bordas */
-  z-index: 9999; /* Garante que fique acima de outros elementos */
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  z-index: 9999;
+  transition: 2ms;
 }
+/* stopwatch.css */
+
+/* Resto do seu CSS... */
 
 .stopwatch {
   display: flex;
@@ -15,8 +19,16 @@
   padding: 20px;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.315);
+  opacity: 0; /* Começa com opacidade zero */
+  transition: opacity 0.5s ease; /* Adicione uma transição de opacidade */
 }
+
+.stopwatch.show {
+  opacity: 1; /* Quando a classe "show" é aplicada, a opacidade é 1 */
+}
+
+/* Resto do seu CSS... */
 
 .stopwatchButtons {
   margin-top: 10px;
@@ -49,3 +61,42 @@
   margin-top: 10px;
   margin-right: 20px;
 }
+
+.showStopwatchButton {
+  background-color: rgba(0, 81, 255, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100px;
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+.showStopwatchButton:hover {
+  background-color: rgba(0, 110, 255, 0.9);
+}
+
+.hideStopwatchButton {
+  background-color: rgba(255, 17, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.hideStopwatchButton:hover {
+  background-color: rgba(255, 30, 0, 0.9);
+}
+
+

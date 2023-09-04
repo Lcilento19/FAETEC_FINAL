@@ -11,24 +11,28 @@ export default function Private({ children }) {
 
   useEffect(() => {
     async function checkLogin() {
-      const unsub = onAuthStateChanged(auth, (user) => {
-        //se tem user logado
-        if (user) {
-          const userData = {
-            uid: user.uid,
-            email: user.email,
-          };
+      try {
+        const unsub = onAuthStateChanged(auth, (user) => {
+          //se tem user logado
+          if (user) {
+            const userData = {
+              uid: user.uid,
+              email: user.email,
+            };
 
-          localStorage.setItem("@detailUser", JSON.stringify(userData));
+            localStorage.setItem("@detailUser", JSON.stringify(userData));
 
-          setLoading(false);
-          setSigned(true);
-        } else {
-          //nao possui user logado
-          setLoading(false);
-          setSigned(false);
-        }
-      });
+            setLoading(false);
+            setSigned(true);
+          } else {
+            //nao possui user logado
+            setLoading(false);
+            setSigned(false);
+          }
+        });
+      } catch (error) {
+        console.error("Error during authentication:", error);
+      }
     }
 
     checkLogin();
@@ -40,7 +44,7 @@ export default function Private({ children }) {
 
   if (!signed) {
     console.log("não iniciado");
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace={true} />;
   }
 
   return children;

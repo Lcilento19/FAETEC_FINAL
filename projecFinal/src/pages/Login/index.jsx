@@ -32,7 +32,8 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Lista de Tarefas</h1>
+      {/* <img className="logo" src="/M_logo.png" width={256} alt="" /> */}
+      <h1>Lista de Tarefas </h1>
       <span>Gerencie sua agenda!</span>
 
       <form className="form" onSubmit={handleLogin}>

@@ -46,5 +46,9 @@ app.post("/generate-text", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log("\x1b[33m%s\x1b[0m", `[API] Iniciando...`);
+  setTimeout(() => {
+    console.clear();
+    console.log("\x1b[32m%s\x1b[0m", `[Api] Server is running on port ${port}`);
+  }, 3000);
 });

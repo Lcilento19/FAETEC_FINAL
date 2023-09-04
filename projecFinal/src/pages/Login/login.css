@@ -38,6 +38,13 @@
   background-color: #3366ff;
   color: aliceblue;
   font-size: 18px;
+  cursor: pointer;
+  transition: 1ms;
+}
+
+.form button:hover{
+  background-color: #1f55f8;
+
 }
 
 .form textarea {
@@ -55,3 +62,8 @@
   margin: 14px 0;
   font-size: 14px;
 }
+
+
+/* .logo{
+  margin-top: -5%;
+} */

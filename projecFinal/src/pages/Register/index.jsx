@@ -30,7 +30,7 @@ function Register() {
   }
 
   return (
-    <div className="home-container">
+    <div className="login-container">
       <h1>Cadastre-se</h1>
       <span>Vamos criar sua conta!</span>
 

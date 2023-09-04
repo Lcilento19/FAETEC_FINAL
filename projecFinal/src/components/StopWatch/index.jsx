@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
-import "./stopwatch.css"; // Importe o estilo do módulo
+import "./stopwatch.css";
 
 const Stopwatch = () => {
-  const [time, setTime] = useState(0);
+  const storedTime = localStorage.getItem("time");
+  const initialTime = storedTime ? parseInt(storedTime, 10) : 0;
+
+  const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
+  const [showStopwatch, setShowStopwatch] = useState(false);
 
   useEffect(() => {
     let intervalId;
     if (isRunning) {
       intervalId = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
+        setTime((prevTime) => {
+          const newTime = prevTime + 1;
+          localStorage.setItem("time", newTime);
+          return newTime;
+        });
       }, 10);
+    } else {
+      clearInterval(intervalId);
     }
     return () => {
       clearInterval(intervalId);
@@ -23,30 +33,50 @@ const Stopwatch = () => {
   const milliseconds = time % 100;
 
   const startStop = () => {
-    setIsRunning(!isRunning);
+    setIsRunning((prevIsRunning) => !prevIsRunning);
   };
 
   const reset = () => {
+    setIsRunning(false);
     setTime(0);
+    localStorage.removeItem("time");
+  };
+
+  const toggleStopwatch = () => {
+    setShowStopwatch((prevShowStopwatch) => !prevShowStopwatch);
   };
 
   return (
     <div className="timerContainer">
-      <div className="stopwatch">
-        <p className="stopwatchTime">
-          {hours}:{minutes.toString().padStart(2, "0")}:
-          {seconds.toString().padStart(2, "0")}:
-          {milliseconds.toString().padStart(2, "0")}
-        </p>
-        <div className="stopwatchButtons">
-          <button className="stopwatchButton" onClick={startStop}>
-            {isRunning ? "Stop" : "Start"}
+      <div className={`stopwatch ${showStopwatch ? "show" : ""}`}>
+        {showStopwatch && (
+          <button className="hideStopwatchButton" onClick={toggleStopwatch}>
+            X
           </button>
-          <button className="stopwatchButton" onClick={reset}>
-            Reset
-          </button>
-        </div>
+        )}
+        {showStopwatch && (
+          <p className="stopwatchTime">
+            {hours}:{minutes.toString().padStart(2, "0")}:
+            {seconds.toString().padStart(2, "0")}:
+            {milliseconds.toString().padStart(2, "0")}
+          </p>
+        )}
+        {showStopwatch && (
+          <div className="stopwatchButtons">
+            <button className="stopwatchButton" onClick={startStop}>
+              {isRunning ? "Stop" : "Start"}
+            </button>
+            <button className="stopwatchButton" onClick={reset}>
+              Reset
+            </button>
+          </div>
+        )}
       </div>
+      {!showStopwatch ? (
+        <button className="showStopwatchButton" onClick={toggleStopwatch}>
+          Cronometro
+        </button>
+      ) : null}
     </div>
   );
 };
