@@ -48,12 +48,13 @@ const Stopwatch = () => {
 
   return (
     <div className="timerContainer">
+      <button className="showStopwatchButton" onClick={toggleStopwatch}>
+        {showStopwatch ? "Esconder Cronômetro" : "Mostrar Cronômetro"}
+      </button>
       <div className={`stopwatch ${showStopwatch ? "show" : ""}`}>
-        {showStopwatch && (
-          <button className="hideStopwatchButton" onClick={toggleStopwatch}>
-            X
-          </button>
-        )}
+        <button className="hideStopwatchButton" onClick={toggleStopwatch}>
+          X
+        </button>
         {showStopwatch && (
           <p className="stopwatchTime">
             {hours}:{minutes.toString().padStart(2, "0")}:
@@ -64,19 +65,14 @@ const Stopwatch = () => {
         {showStopwatch && (
           <div className="stopwatchButtons">
             <button className="stopwatchButton" onClick={startStop}>
-              {isRunning ? "Stop" : "Start"}
+              {isRunning ? "Parar" : "Iniciar"}
             </button>
             <button className="stopwatchButton" onClick={reset}>
-              Reset
+              Resetar
             </button>
           </div>
         )}
       </div>
-      {!showStopwatch ? (
-        <button className="showStopwatchButton" onClick={toggleStopwatch}>
-          Cronometro
-        </button>
-      ) : null}
     </div>
   );
 };

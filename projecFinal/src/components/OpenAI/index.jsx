@@ -32,41 +32,38 @@ function OpenAI() {
   };
 
   const toggleOpenAI = () => {
-    setShowOpenAI(!showOpenAI);
+    setShowOpenAI((prevState) => !prevState);
   };
 
   return (
-    <>
+    <div className="center-container">
       <button className="showOpenAIButton" onClick={toggleOpenAI}>
         {showOpenAI ? "Hide OpenAI" : "Show OpenAI"}
       </button>
-      <div className="center-container">
-        {/* Botão fora do container */}
 
-        {showOpenAI && (
-          <div className="container">
-            <div className="region resposta-region">
-              <h1 className="titulo">Resposta</h1>
-              <div className="resposta">
-                <p>{response}</p>
-              </div>
+      {showOpenAI && (
+        <div className="container">
+          <div className="region resposta-region">
+            <h1 className="titulo">Resposta</h1>
+            <div className="resposta">
+              <p>{response}</p>
             </div>
-            <div className="region input-region">
-              <h1 className="titulo">Pergunta</h1>
-              <input
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                onKeyUp={handleKeyPress}
-                type="text"
-              />
-            </div>
-            <button className="botao" onClick={handleGenerateText}>
-              Enviar
-            </button>
           </div>
-        )}
-      </div>
-    </>
+          <div className="region input-region">
+            <h1 className="titulo">Pergunta</h1>
+            <input
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              onKeyUp={handleKeyPress}
+              type="text"
+            />
+          </div>
+          <button className="botao" onClick={handleGenerateText}>
+            Enviar
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 

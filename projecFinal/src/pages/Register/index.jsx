@@ -1,15 +1,16 @@
 import { useState } from "react";
-
 import { Link } from "react-router-dom";
-import { auth } from "../../firebaseConnection";
+import { auth, db } from "../../firebaseConnection";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 import "./register.css";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nome, setNome] = useState("");
 
   const navigate = useNavigate();
 
@@ -17,15 +18,32 @@ function Register() {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
-      await createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          navigate("/", { replace: true });
-        })
-        .catch(() => {
-          console.log("Erro ao cadastrar");
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+
+        // Use o uid do usuário como o ID da pessoa
+        const idDaPessoa = user.uid;
+
+        // Salve as informações no Firestore com o mesmo ID da pessoa
+        const userDocRef = doc(db, "contas", idDaPessoa);
+        await setDoc(userDocRef, {
+          idDaPessoa: idDaPessoa,
+          nome: nome,
+          email: email,
+          senha: password,
         });
+
+        navigate("/", { replace: true });
+      } catch (error) {
+        console.error("Erro ao cadastrar:", error);
+      }
     } else {
-      alert("preencha os campos");
+      alert("Preencha os campos");
     }
   }
 
@@ -36,10 +54,17 @@ function Register() {
 
       <form className="form" onSubmit={handleRegister}>
         <input
-          type="text"
+          type="email"
           placeholder="email@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="nome Sobrenome"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
         />
         <input
           type="password"

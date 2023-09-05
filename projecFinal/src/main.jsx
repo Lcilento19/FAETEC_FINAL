@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Private from "./routes/Private";
+import Erro404 from "./pages/404";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   { path: "/register", element: <Register /> },
+  { path: "*", element: <Erro404 /> },
 
   {
     path: "/home",

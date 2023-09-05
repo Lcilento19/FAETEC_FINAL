@@ -1,5 +1,6 @@
 /* stopwatch.css */
 
+/* Configuração geral */
 .timerContainer {
   position: fixed;
   bottom: 0;
@@ -8,10 +9,8 @@
   z-index: 9999;
   transition: 2ms;
 }
-/* stopwatch.css */
 
-/* Resto do seu CSS... */
-
+/* Estilo do cronômetro */
 .stopwatch {
   display: flex;
   flex-direction: column;
@@ -28,8 +27,7 @@
   opacity: 1; /* Quando a classe "show" é aplicada, a opacidade é 1 */
 }
 
-/* Resto do seu CSS... */
-
+/* Botões do cronômetro */
 .stopwatchButtons {
   margin-top: 10px;
   display: flex;
@@ -62,6 +60,7 @@
   margin-right: 20px;
 }
 
+/* Botão "Mostrar Cronômetro" */
 .showStopwatchButton {
   background-color: rgba(0, 81, 255, 0.7);
   color: white;
@@ -71,16 +70,17 @@
   font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100px;
-  position: absolute;
-  bottom: 10px;
-  right: 30px;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 9999;
 }
 
 .showStopwatchButton:hover {
   background-color: rgba(0, 110, 255, 0.9);
 }
 
+/* Botão "Esconder Cronômetro" */
 .hideStopwatchButton {
   background-color: rgba(255, 17, 0, 0.7);
   color: white;
@@ -98,5 +98,3 @@
 .hideStopwatchButton:hover {
   background-color: rgba(255, 30, 0, 0.9);
 }
-
-

@@ -58,10 +58,10 @@
   font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  position: absolute;
-  top: 200px;
-  right: 50px;
-  width: 100px;
+  position: fixed;
+  left: 20px;
+  top: 60px;
+  z-index: 9999;
 
 }
 
