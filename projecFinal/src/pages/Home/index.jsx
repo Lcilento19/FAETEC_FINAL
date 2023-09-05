@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <>
       <div className="home-container">
-        <h1 className="titulo">Página Inicial</h1>
+        <h1 className="titulo-home">Página Inicial</h1>
         <p>Bem-vindo, {userName || "Usuário"}!</p>
         <button className="logout" onClick={handleLogout}>
           SAIR

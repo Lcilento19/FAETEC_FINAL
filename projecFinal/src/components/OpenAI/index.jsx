@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./openai.css";
+import "./OpenAI.css"; // Certifique-se de usar o nome correto do arquivo CSS
 
 function OpenAI() {
   const [prompt, setPrompt] = useState("");
@@ -43,24 +43,23 @@ function OpenAI() {
 
       {showOpenAI && (
         <div className="container">
-          <div className="region resposta-region">
-            <h1 className="titulo">Resposta</h1>
-            <div className="resposta">
-              <p>{response}</p>
-            </div>
+          <h1 className="titulo">Chat com OpenAI</h1>
+          <div className="resposta">
+            <p>{response}</p>
           </div>
-          <div className="region input-region">
-            <h1 className="titulo">Pergunta</h1>
+          <div className="input-region">
             <input
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               onKeyUp={handleKeyPress}
               type="text"
+              className="input-text" // Adicione a classe aqui
+              placeholder="Digite sua mensagem..."
             />
+            <button className="botao" onClick={handleGenerateText}>
+              Enviar
+            </button>
           </div>
-          <button className="botao" onClick={handleGenerateText}>
-            Enviar
-          </button>
         </div>
       )}
     </div>
