@@ -35,7 +35,6 @@ app.post("/generate-text", async (req, res) => {
         { role: "system", content: "You are a helpful assistant." },
         { role: "user", content: prompt },
       ],
-      max_tokens: 4000,
     });
 
     res.status(200).json({ text: response.choices[0].message.content });

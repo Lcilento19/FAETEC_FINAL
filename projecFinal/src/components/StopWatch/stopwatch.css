@@ -20,7 +20,7 @@
   background-color: white;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.315);
   opacity: 0; /* Começa com opacidade zero */
-  transition: opacity 0.5s ease; /* Adicione uma transição de opacidade */
+  transition: right 0.3s ease; /* Adicione uma transição para a animação */
 }
 
 .stopwatch.show {
@@ -42,7 +42,7 @@
   padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: right 0.3s ease; /* Adicione uma transição para a animação */
 }
 
 .stopwatchButton:not(:last-child) {
@@ -69,7 +69,7 @@
   padding: 5px 10px;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: right 0.3s ease; /* Adicione uma transição para a animação */
   position: fixed;
   left: 20px;
   top: 20px;
@@ -89,7 +89,7 @@
   padding: 5px 10px;
   font-size: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: right 0.3s ease; /* Adicione uma transição para a animação */
   position: absolute;
   top: 10px;
   right: 10px;
