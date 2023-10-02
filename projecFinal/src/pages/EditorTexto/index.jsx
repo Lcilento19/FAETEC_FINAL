@@ -58,7 +58,7 @@ function TextEditor() {
       <Link className="TextEditorButton" to={"/home"}>
         Home
       </Link>
-      <TemaEscuroToggle />
+      <TemaEscuroToggle onClick={setTextColor("#fff")} />
       <div className="buttons-editor">
         <button className="format-button" onClick={handleBoldClick}>
           Negrito
