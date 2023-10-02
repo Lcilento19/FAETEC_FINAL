@@ -1,0 +1,76 @@
+/* Estilos comuns para o tema claro e escuro */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff; /* Cor de fundo do tema claro */
+  color: #333; /* Cor do texto do tema claro */
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilos específicos para o tema escuro */
+.dark-theme {
+  background-color: #020a0f; /* Cor de fundo do tema escuro */
+  color: #fff; /* Cor do texto do tema escuro */
+  /* Adicione mais estilos específicos do tema escuro aqui */
+}
+
+/* Componentes */
+
+/* Estilize o alternador de tema */
+.alternar-tema {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #fff; /* Cor de fundo padrão */
+  color: #333; /* Cor do texto padrão */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Adicione estilos específicos para o tema escuro */
+.alternar-tema.dark {
+  background-color: #020a0f; /* Cor de fundo do tema escuro */
+  color: #fff; /* Cor do texto do tema escuro */
+}
+
+/* Estilize o ícone FontAwesome */
+.alternar-tema label {
+  display: flex;
+  align-items: center;
+}
+
+.alternar-tema label svg {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+/* Estilize o ícone da lua */
+.icone-lua {
+  font-size: 20px;
+  margin-right: 8px;
+  color: #007bff; /* Cor azul para o ícone da lua */
+  background-color: transparent;
+}
+
+/* Estilize o ícone do sol (ícone do dia) */
+.icone-sol {
+  font-size: 20px;
+  margin-right: 8px;
+  color: rgb(255, 230, 0); /* Cor amarela para o ícone do sol */
+  background-color: transparent;
+}
+
+/* Estilos para tornar o alternador de tema responsivo */
+@media (max-width: 768px) {
+  .alternar-tema {
+    padding: 5px;
+  }
+
+  .alternar-tema label svg {
+    font-size: 16px;
+  }
+}

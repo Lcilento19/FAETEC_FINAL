@@ -1,18 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
-
 import { Link } from "react-router-dom";
-
 import { auth } from "../../firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
 import { useNavigate } from "react-router-dom";
+
+import "../../components/TemaEscuro/temaEscuro.css";
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema"; // Importe o comutador de tema
+import { useTema } from "../../components/TemaEscuro/TemaContext"; // Importe o gancho de tema
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
+  const { temaEscuro, toggleTema } = useTema();
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -26,15 +27,21 @@ function Login() {
           console.log("Erro ao fazer login");
         });
     } else {
-      alert("preencha os campos");
+      alert("Preencha os campos");
     }
   }
 
   return (
-    <div className="login-container">
-      {/* <img className="logo" src="/M_logo.png" width={256} alt="" /> */}
-      <h1>Lista de Tarefas </h1>
-      <span>Gerencie sua agenda!</span>
+    <div className={`login-container ${temaEscuro ? "dark-theme" : ""}`}>
+
+      <img
+        style={{ paddingBottom: 50 }}
+        width={300}
+        height={256}
+        src="logo.png"
+        alt=""
+      />
+      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
 
       <form className="form" onSubmit={handleLogin}>
         <input

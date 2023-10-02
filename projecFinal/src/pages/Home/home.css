@@ -1,5 +1,6 @@
 .logout {
-  background-color: rgba(0, 81, 255, 0.7);
+  background-color: rgba(228, 49, 18, 0.7);
+  margin-top: 10px;
   color: white;
   border: none;
   border-radius: 5px;
@@ -10,5 +11,26 @@
 }
 
 .logout:hover {
-  background-color: rgba(0, 110, 255, 0.9);
+  background-color: rgba(255, 38, 0, 0.9);
 }
+
+.user > span {
+  font-weight: bolder;
+}
+
+.TextEditorButton {
+  background-color: rgba(0, 81, 255, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: fixed;
+  left: 20px;
+  top: 110px;
+  z-index: 9999;
+  text-decoration: none;
+}
+

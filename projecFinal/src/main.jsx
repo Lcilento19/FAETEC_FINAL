@@ -8,6 +8,11 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Private from "./routes/Private";
 import Erro404 from "./pages/404";
+import { TemaProvider } from "./components/TemaEscuro/TemaContext"; // Importe o provedor de tema
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import TextEditor from "./pages/EditorTexto";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +30,17 @@ const router = createBrowserRouter([
       </Private>
     ),
   },
+  {
+    path: "/editor",
+    element: <TextEditor />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <TemaProvider>
+      <ToastContainer autoClose={4000} />
+      <RouterProvider router={router} />
+    </TemaProvider>
   </React.StrictMode>
 );

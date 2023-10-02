@@ -6,8 +6,13 @@
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline;
   font-family: "Roboto", sans-serif;
+
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* ===== Scrollbar CSS ===== */

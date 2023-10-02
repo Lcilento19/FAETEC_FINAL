@@ -1,5 +1,5 @@
 {
-  "name": "projecfinal",
+  "name": "multi",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,13 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "dotenv": "^16.3.1",
+    "draft-js": "^0.11.7",
+    "draft.js": "^0.2.0",
     "firebase": "^10.3.0",
+    "fortawesome": "^0.0.1-security",
     "highlight.js": "^11.8.0",
     "openai": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^6.15.0",
+    "react-toastify": "^9.1.3",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

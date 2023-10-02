@@ -1,0 +1,67 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+:root {
+  --cor-fundo-tema-claro: #fff;
+  --cor-texto-tema-claro: #333;
+  --cor-fundo-tema-escuro: #020a0f;
+  --cor-texto-tema-escuro: #fff;
+}
+
+/* Estilo para o contêiner do tema escuro */
+.editor-container.dark-theme {
+  background-color: var(--cor-fundo-tema-escuro);
+  color: var(--cor-texto-tema-escuro);
+}
+
+/* Estilo para os botões de formatação */
+.editor-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Estilo para o input de cor */
+.editor-container .color-input {
+  vertical-align: middle;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  color: #fff; /* Cor do texto do input de cor no tema escuro */
+}
+
+/* Estilo para o textarea */
+.editor-container .text-area {
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+/* Estilo para o texto digitado */
+.editor-container h2 {
+  margin-top: 20px;
+  color: var(--cor-texto-tema-escuro);
+}
+
+/* Estilo para a visualização do texto digitado */
+.editor-container p {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--cor-texto-tema-escuro);
+}

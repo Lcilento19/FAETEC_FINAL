@@ -24,17 +24,27 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to the OpenAI API" });
 });
+const conversation = []; // Array para rastrear as mensagens da conversa
 
 app.post("/generate-text", async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
+    // Adicione a mensagem do usuário à conversa
+    conversation.push({ role: "user", content: prompt });
+
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are a helpful assistant." },
-        { role: "user", content: prompt },
+        ...conversation, // Adicione todas as mensagens da conversa
       ],
+    });
+
+    // Adicione a resposta da IA à conversa
+    conversation.push({
+      role: "assistant",
+      content: response.choices[0].message.content,
     });
 
     res.status(200).json({ text: response.choices[0].message.content });

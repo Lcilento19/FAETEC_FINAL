@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import hljs from "highlight.js";
-import "highlight.js/styles/agate.css"; // Importe um estilo de destaque de código (no meu caso, estou usando "agate")
-import "./OpenAI.css"; // Importe seu CSS personalizado
+import "highlight.js/styles/agate.css";
+import "./OpenAI.css";
 
 function OpenAI() {
   const [messages, setMessages] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [conversation, setConversation] = useState([]); // Defina a variável de conversa
 
   const addMessage = async (message, isResponse) => {
-    const codeRegex = /```([a-zA-Z]+)([^]+?)```/g; // Regex para encontrar blocos de código
+    const codeRegex = /```([a-zA-Z]+)([^]+?)```/g;
 
     const formattedMessage = await Promise.all(
       message.split(codeRegex).map(async (part, index) => {
         if (index % 3 === 0) {
-          return part; // Parte do texto regular
+          return part;
         } else if (index % 3 === 1) {
           const language = part;
           const code = message.split(codeRegex)[index + 1];
@@ -28,6 +29,10 @@ function OpenAI() {
       .map((part) => ({ text: part, isResponse }));
 
     setMessages((prevMessages) => [...prevMessages, ...newMessages]);
+    setConversation((prevConversation) => [
+      ...prevConversation,
+      ...newMessages,
+    ]);
   };
 
   const formatCode = async (code, language) => {
@@ -36,7 +41,7 @@ function OpenAI() {
       return `<pre><code class="hljs ${language}">${highlightedCode}</code></pre>`;
     } catch (error) {
       console.error("Erro ao formatar código:", error);
-      return `<pre><code>${code}</code></pre>`; // Em caso de erro, retorne o código não formatado
+      return `<pre><code>${code}</code></pre>`;
     }
   };
 
@@ -67,11 +72,11 @@ function OpenAI() {
   return (
     <div className={`openai-container ${showChat ? "show" : ""}`}>
       <button className="showOpenAIButton" onClick={toggleChat}>
-        {showChat ? "Hide OpenAI" : "Show OpenAI"}
+        {showChat ? "Esconder OpenAI" : "Mostrar OpenAI"}
       </button>
       <h1 className="titulo-ia">Chat Ia</h1>
       <div className="chat-container">
-        {messages.map((message, index) => (
+        {conversation.map((message, index) => (
           <div
             key={index}
             className={`message ${

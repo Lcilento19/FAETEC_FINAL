@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Stopwatch from "../../components/StopWatch";
 import OpenAI from "../../components/OpenAI";
+import Calculator from "../../components/Calculator";
 import "./home.css";
 import { db, auth } from "../../firebaseConnection";
 import { signOut } from "firebase/auth";
-import { doc, getDoc, collection, query, where } from "firebase/firestore";
+import { doc, getDoc, collection } from "firebase/firestore";
+import "../../components/TemaEscuro/temaEscuro.css";
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema"; // Importe o comutador de tema
+import { useTema } from "../../components/TemaEscuro/TemaContext"; // Importe o gancho de tema
+import { Link } from "react-router-dom";
 
 async function handleLogout() {
   await signOut(auth);
@@ -13,40 +18,42 @@ async function handleLogout() {
 export default function Home() {
   const [userName, setUserName] = useState("");
   const user = auth.currentUser;
+  const { temaEscuro } = useTema();
 
   useEffect(() => {
-    if (user) {
-      async function fetchUserName() {
-        try {
-          const userDocRef = doc(collection(db, "contas"), user.uid);
-          const userDocSnap = await getDoc(userDocRef);
+    async function fetchUserName() {
+      const userDocRef = doc(collection(db, "contas"), user.uid);
+      const userDocSnap = await getDoc(userDocRef);
 
-          if (userDocSnap.exists()) {
-            const userData = userDocSnap.data();
-            setUserName(userData.nome);
-          } else {
-            console.error("Documento do usuário não encontrado.");
-          }
-        } catch (error) {
-          console.error("Erro ao buscar o nome do usuário:", error);
-        }
-      }
-
-      fetchUserName();
+      const userData = userDocSnap.data();
+      setUserName(userData.nome);
     }
+
+    fetchUserName();
   }, [user]);
 
   return (
-    <>
-      <div className="home-container">
-        <h1 className="titulo-home">Página Inicial</h1>
-        <p>Bem-vindo, {userName || "Usuário"}!</p>
-        <button className="logout" onClick={handleLogout}>
-          SAIR
-        </button>
-      </div>
+    <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
+      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />{" "}
+      <img
+        style={{ paddingBottom: 50 }}
+        width={300}
+        height={256}
+        src="logo.png"
+        alt="logo"
+      />{" "}
+      <p className="user">
+        Bem-vindo, <span>{userName || "Usuário"}</span>!
+      </p>
+      <button className="logout" onClick={handleLogout}>
+        SAIR
+      </button>
+      <Link className="TextEditorButton" target="_blank" to={"/editor"}>
+        Editor de Texto
+      </Link>
+      <Calculator />
       <OpenAI />
       <Stopwatch />
-    </>
+    </div>
   );
 }

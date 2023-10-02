@@ -24,11 +24,15 @@
 }
 
 .form input {
-  border: 0;
   margin-bottom: 12px;
   height: 36px;
-  border-radius: 4px;
   padding: 0 8px;
+
+  border-width: 1px;
+  border-color: #cccccc;
+  border-style: solid;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
 }
 
 .form button {
@@ -42,9 +46,8 @@
   transition: 1ms;
 }
 
-.form button:hover{
+.form button:hover {
   background-color: #1f55f8;
-
 }
 
 .form textarea {
@@ -62,8 +65,3 @@
   margin: 14px 0;
   font-size: 14px;
 }
-
-
-/* .logo{
-  margin-top: -5%;
-} */
