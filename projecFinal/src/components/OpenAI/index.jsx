@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import hljs from "highlight.js";
 import "highlight.js/styles/agate.css";
-import "./OpenAI.css";
+import "./openai.css";
 
 function OpenAI() {
   const [messages, setMessages] = useState([]);
