@@ -16,7 +16,7 @@
 
 /* Estilo para o contêiner do tema escuro */
 .editor-container.dark-theme {
-  background-color: var(--cor-fundo-tema-escuro);
+  background-color: #2b2730;
   color: var(--cor-texto-tema-escuro);
 }
 

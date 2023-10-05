@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { auth } from "../firebaseConnection";
 import { onAuthStateChanged } from "firebase/auth";
-
-import { Navigate } from "react-router-dom";
 
 export default function Private({ children }) {
   const [loading, setLoading] = useState(true);
@@ -13,7 +11,6 @@ export default function Private({ children }) {
     async function checkLogin() {
       try {
         const unsub = onAuthStateChanged(auth, (user) => {
-          //se tem user logado
           if (user) {
             const userData = {
               uid: user.uid,
@@ -25,13 +22,14 @@ export default function Private({ children }) {
             setLoading(false);
             setSigned(true);
           } else {
-            //nao possui user logado
             setLoading(false);
             setSigned(false);
           }
         });
       } catch (error) {
-        console.error("Error during authentication:", error);
+        console.error("Erro durante a autenticação:", error);
+        setLoading(false);
+        setSigned(false);
       }
     }
 
@@ -39,13 +37,13 @@ export default function Private({ children }) {
   }, []);
 
   if (loading) {
-    return <div></div>;
+    return <div>Carregando...</div>; // Pode exibir um spinner de carregamento enquanto verifica a autenticação.
   }
 
   if (!signed) {
-    console.log("não iniciado");
-    return <Navigate to="/" replace={true} />;
+    return <Navigate to="/" replace={true} />; // Redireciona para a página de login.
   }
 
-  return children;
+  // Se o usuário estiver autenticado, renderiza os componentes filhos (rotas protegidas).
+  return <>{children}</>;
 }

@@ -20,28 +20,31 @@ export default function Home() {
   const user = auth.currentUser;
   const { temaEscuro } = useTema();
 
-  useEffect(() => {
-    async function fetchUserName() {
-      const userDocRef = doc(collection(db, "contas"), user.uid);
-      const userDocSnap = await getDoc(userDocRef);
-
-      const userData = userDocSnap.data();
-      setUserName(userData.nome);
+  async function fetchUserName() {
+    if (user) {
+      if (user.providerData && user.providerData[0]) {
+        // Verificar se o método de autenticação é o Google
+        if (user.providerData[0].providerId === "google.com") {
+          // Se for Google, use o nome da conta do Google
+          setUserName(user.providerData[0].displayName || "Usuário");
+        } else {
+          // Se não for Google, use o nome do documento do Firestore (ou "Usuário" como padrão)
+          const userDocRef = doc(collection(db, "contas"), user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          const userData = userDocSnap.data();
+          setUserName(userData?.nome || "Usuário");
+        }
+      }
     }
+  }
 
+  useEffect(() => {
     fetchUserName();
   }, [user]);
 
   return (
     <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />{" "}
-      <img
-        style={{ paddingBottom: 50 }}
-        width={300}
-        height={256}
-        src="logo.png"
-        alt="logo"
-      />{" "}
       <p className="user">
         Bem-vindo, <span>{userName || "Usuário"}</span>!
       </p>
@@ -50,6 +53,9 @@ export default function Home() {
       </button>
       <Link className="TextEditorButton" target="_blank" to={"/editor"}>
         Editor de Texto
+      </Link>
+      <Link className="TodoListButton" target="_blank" to={"/todoList"}>
+        Lista de tarefas
       </Link>
       <Calculator />
       <OpenAI />

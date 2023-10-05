@@ -13,6 +13,7 @@ import { TemaProvider } from "./components/TemaEscuro/TemaContext"; // Importe o
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TextEditor from "./pages/EditorTexto";
+import TodoList from "./pages/TodoList";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/editor",
-    element: <TextEditor />,
+    element: (
+      <Private>
+        <TextEditor />
+      </Private>
+    ),
+  },
+  {
+    path: "/todoList",
+    element: (
+      <Private>
+        <TodoList />
+      </Private>
+    ),
   },
 ]);
 

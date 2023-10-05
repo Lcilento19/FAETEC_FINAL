@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
-import { auth } from "../../firebaseConnection";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
 import "../../components/TemaEscuro/temaEscuro.css";
-import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema"; // Importe o comutador de tema
-import { useTema } from "../../components/TemaEscuro/TemaContext"; // Importe o gancho de tema
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
+import { useTema } from "../../components/TemaEscuro/TemaContext";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authMethod, setAuthMethod] = useState(""); // Método de autenticação
   const navigate = useNavigate();
   const { temaEscuro, toggleTema } = useTema();
 
@@ -19,8 +23,11 @@ function Login() {
     e.preventDefault();
 
     if (email !== "" && password !== "") {
+      const auth = getAuth();
+
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
+          setAuthMethod("emailAndPassword"); // Defina o método de autenticação
           navigate("/home", { replace: true });
         })
         .catch(() => {
@@ -31,16 +38,23 @@ function Login() {
     }
   }
 
+  async function handleGoogleLogin() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setAuthMethod("googleAccount"); // Defina o método de autenticação
+        navigate("/home", { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <div className={`login-container ${temaEscuro ? "dark-theme" : ""}`}>
-
-      <img
-        style={{ paddingBottom: 50 }}
-        width={300}
-        height={256}
-        src="logo.png"
-        alt=""
-      />
+      <h1 className="title-login">Multi</h1>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
 
       <form className="form" onSubmit={handleLogin}>
@@ -57,9 +71,20 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Acessar</button>
+        <button type="submit" className="button-login">
+          Acessar
+        </button>
+        <button
+          type="button"
+          onClick={handleGoogleLogin}
+          className="button-google"
+        >
+          <img src="google_login.png" alt="" className="google_login_image" />
+          SignIn with Google
+        </button>
       </form>
-      <Link className="button-link" to={"/register"}>
+
+      <Link className="button-linkToRegister" to={"/register"}>
         Não possui uma conta? Cadastre-se
       </Link>
     </div>

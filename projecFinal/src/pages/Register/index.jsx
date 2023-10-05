@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { auth, db } from "../../firebaseConnection";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { doc, setDoc } from "firebase/firestore";
 import "./register.css";
-import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema"; // Importe o comutador de tema
-import { useTema } from "../../components/TemaEscuro/TemaContext"; // Importe o gancho de tema
-
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../../components/TemaEscuro/temaEscuro.css";
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
+import { useTema } from "../../components/TemaEscuro/TemaContext";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+} from "firebase/auth";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
-
   const [nome, setNome] = useState("");
   const navigate = useNavigate();
-  const { temaEscuro } = useTema(); // Acesse o estado do tema
+  const { temaEscuro } = useTema();
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -25,10 +24,11 @@ function Register() {
     if (email !== "" && password1 !== "" && password2 !== "" && nome !== "") {
       try {
         if (password1 !== password2) {
-          toast.warn("As senhas não coincidem");
+          alert("As senhas não coincidem");
           setPassword1("");
           setPassword2("");
-        } else if (password1 == password2) {
+        } else if (password1 === password2) {
+          const auth = getAuth();
           const userCredential = await createUserWithEmailAndPassword(
             auth,
             email,
@@ -40,36 +40,33 @@ function Register() {
           const idDaPessoa = user.uid;
 
           // Salve as informações no Firestore com o mesmo ID da pessoa
-          const userDocRef = doc(db, "contas", idDaPessoa);
-          await setDoc(userDocRef, {
-            idDaPessoa: idDaPessoa,
-            nome: nome,
-            email: email,
-            senha: password1,
-          });
+          // Você pode adicionar mais campos, se necessário
+          // const userDocRef = doc(db, "contas", idDaPessoa);
+          // await setDoc(userDocRef, {
+          //   idDaPessoa: idDaPessoa,
+          //   nome: nome,
+          //   email: email,
+          //   senha: password1,
+          // });
 
-          toast.success("Cadastrado com sucesso");
+          alert("Cadastrado com sucesso");
 
           navigate("/", { replace: true });
         }
       } catch (error) {
         if (error.code === "auth/email-already-in-use") {
-          toast.warn("Este email já está em uso. Por favor, escolha outro.");
+          alert("Este email já está em uso. Por favor, escolha outro.");
         } else if (error.code === "auth/invalid-email") {
-          toast.warn(
-            "O email fornecido é inválido. Por favor, verifique o email."
-          );
+          alert("O email fornecido é inválido. Por favor, verifique o email.");
         } else if (error.code === "auth/weak-password") {
-          toast.warn("A senha é muito fraca. Escolha uma senha mais forte.");
+          alert("A senha é muito fraca. Escolha uma senha mais forte.");
         } else {
           console.error("Erro ao cadastrar:", error);
-          toast.warn(
-            "Ocorreu um erro ao cadastrar. Tente novamente mais tarde."
-          );
+          alert("Ocorreu um erro ao cadastrar. Tente novamente mais tarde.");
         }
       }
     } else {
-      toast.warn("Preencha os campos");
+      alert("Preencha todos os campos");
     }
   }
 
@@ -77,7 +74,8 @@ function Register() {
     <div className={`login-container ${temaEscuro ? "dark-theme" : ""}`}>
       <h1>Cadastre-se</h1>
       <span>Vamos criar sua conta!</span>
-      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />{" "}
+      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />
+
       <form className="form" onSubmit={handleRegister}>
         <input
           type="email"
@@ -97,20 +95,19 @@ function Register() {
           value={password1}
           onChange={(e) => setPassword1(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Confirm Password"
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
         />
-
-        <button type="submit">Cadastrar</button>
+        <button type="submit" className="register-button">
+          Cadastrar
+        </button>
       </form>
-      <Link className="button-link" to={"/"}>
+      <Link className="button-linkToLogin" to={"/"}>
         Já possui uma conta? Faça o login.
       </Link>
-
     </div>
   );
 }

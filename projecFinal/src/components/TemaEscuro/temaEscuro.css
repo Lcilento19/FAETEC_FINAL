@@ -1,19 +1,12 @@
-/* Estilos comuns para o tema claro e escuro */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #fff; /* Cor de fundo do tema claro */
-  color: #333; /* Cor do texto do tema claro */
-  font-family: Arial, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
-}
-
 /* Estilos específicos para o tema escuro */
 .dark-theme {
-  background-color: #020a0f; /* Cor de fundo do tema escuro */
+  background-color: transparent; /* Cor de fundo do tema escuro */
   color: #fff; /* Cor do texto do tema escuro */
   /* Adicione mais estilos específicos do tema escuro aqui */
+  transition: background-color 0.2s, color 0.2s; /* Reduzir a duração da transição */
 }
+
+/* ... Outros estilos ... */
 
 /* Componentes */
 
@@ -22,19 +15,19 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #fff; /* Cor de fundo padrão */
+  background-color: transparent; /* Cor de fundo padrão */
   color: #333; /* Cor do texto padrão */
   display: flex;
   align-items: center;
   padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s; /* Reduzir a duração da transição */
 }
 
 /* Adicione estilos específicos para o tema escuro */
 .alternar-tema.dark {
-  background-color: #020a0f; /* Cor de fundo do tema escuro */
+  background-color: transparent;
   color: #fff; /* Cor do texto do tema escuro */
+  transition: background-color 0.2s, color 0.2s; /* Reduzir a duração da transição */
 }
 
 /* Estilize o ícone FontAwesome */
@@ -50,18 +43,18 @@ body {
 
 /* Estilize o ícone da lua */
 .icone-lua {
-  font-size: 20px;
   margin-right: 8px;
   color: #007bff; /* Cor azul para o ícone da lua */
   background-color: transparent;
+  cursor: pointer;
 }
 
 /* Estilize o ícone do sol (ícone do dia) */
 .icone-sol {
-  font-size: 20px;
   margin-right: 8px;
   color: rgb(221, 221, 219); /* Cor amarela para o ícone do sol */
   background-color: transparent;
+  cursor: pointer;
 }
 
 /* Estilos para tornar o alternador de tema responsivo */
