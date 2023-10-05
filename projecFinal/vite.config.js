@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://apichat.vercel.app", // Substitua pelo URL do seu servidor de backend
+        target: "https://apimultiai.squareweb.app", // Substitua pelo URL do seu servidor de backend
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
