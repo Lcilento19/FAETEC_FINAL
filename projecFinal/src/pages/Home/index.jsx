@@ -3,7 +3,7 @@ import Stopwatch from "../../components/StopWatch";
 import OpenAI from "../../components/OpenAI";
 import Calculator from "../../components/Calculator";
 import "./home.css";
-import { db, auth } from "../../firebaseConnection";
+import { auth, db } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
 import { doc, getDoc, collection } from "firebase/firestore";
 import "../../components/TemaEscuro/temaEscuro.css";

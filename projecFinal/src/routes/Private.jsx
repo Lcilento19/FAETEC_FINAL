@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../firebaseConnection";
+import { auth } from "../config/firebaseConnection";
 import { onAuthStateChanged } from "firebase/auth";
 
 export default function Private({ children }) {

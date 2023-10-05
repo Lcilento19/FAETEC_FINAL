@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./todolist.css";
 import { useNavigate } from "react-router-dom";
 
-import { auth, db } from "../../firebaseConnection";
+import { auth, db } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
 
 import {
