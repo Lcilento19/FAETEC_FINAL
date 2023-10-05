@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/home": {
-        target: "https://apimultiai.squareweb.app", // Substitua pelo URL do seu servidor de backend
+        target: "https://apimultiai.squareweb.app",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
