@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./assets/bootstrap.css";
 import "./assets/error-page-responsive.css";
 import "./assets/error-page.css";
+import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <div>
@@ -20,9 +21,9 @@ const NotFound = () => {
                 server has invalid syntax.
               </p>
               <div className="back-btn">
-                <a href="index.html" className="btn">
-                  Back to Home
-                </a>
+                <Link className="btn" to={"/home"}>
+                  Inicio
+                </Link>
               </div>
             </div>
           </div>

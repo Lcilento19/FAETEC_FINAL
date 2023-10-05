@@ -113,7 +113,7 @@ h6 {
 .page-section .content-detail .sub-title,
 .page-section .content-detail .detail-text {
   display: block;
-  color: #5076db;
+  color: #050b1a;
   text-align: center;
 }
 .page-section .content-detail .sub-title {
@@ -123,7 +123,7 @@ h6 {
 }
 .page-section .content-detail .global-title {
   display: block;
-  color: #5bc86d;
+  color: #9575de;
   font-size: 150px;
   font-weight: 800;
 }
@@ -172,13 +172,12 @@ h6 {
 }
 .page-section .content-detail .back-btn .btn {
   padding: 8px 15px;
-  color: #5076db;
-  border: 1px solid #5076db;
+  color: #9575de;
+  border: 1px solid #9575de;
   border-radius: 30px;
   font-size: 14px;
 }
 .page-section .content-detail .back-btn .btn:hover {
-  background-color: #5076db;
+  background-color: #9575de;
   color: #fff;
 }
-/*# sourceMappingURL=error-page.css.map */
