@@ -5,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../components/TemaEscuro/temaEscuro.css";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -36,18 +33,7 @@ function Register() {
           );
           const user = userCredential.user;
 
-          // Use o uid do usuário como o ID da pessoa
           const idDaPessoa = user.uid;
-
-          // Salve as informações no Firestore com o mesmo ID da pessoa
-          // Você pode adicionar mais campos, se necessário
-          // const userDocRef = doc(db, "contas", idDaPessoa);
-          // await setDoc(userDocRef, {
-          //   idDaPessoa: idDaPessoa,
-          //   nome: nome,
-          //   email: email,
-          //   senha: password1,
-          // });
 
           alert("Cadastrado com sucesso");
 

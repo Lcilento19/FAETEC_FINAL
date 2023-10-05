@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "../../components/TemaEscuro/temaEscuro.css";
-import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
-import { useTema } from "../../components/TemaEscuro/TemaContext";
 import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from "firebase/auth";
+import "../../components/TemaEscuro/temaEscuro.css";
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
+import { useTema } from "../../components/TemaEscuro/TemaContext";
+
+import { auth, db } from "../../config/firebaseConnection";
+
+import { toast } from "react-toastify";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authMethod, setAuthMethod] = useState(""); // Método de autenticação
+  const [showResetPassword, setShowResetPassword] = useState(false); // Estado para controlar a exibição do formulário de redefinição
   const navigate = useNavigate();
   const { temaEscuro, toggleTema } = useTema();
 
@@ -34,7 +40,7 @@ function Login() {
           console.log("Erro ao fazer login");
         });
     } else {
-      alert("Preencha os campos");
+      toast.warn("Preencha os campos");
     }
   }
 
@@ -50,6 +56,19 @@ function Login() {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  async function handleResetPasswordRequest() {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success(
+        "Um link de redefinição de senha foi enviado para o seu email."
+      );
+      setShowResetPassword(false); // Oculta o formulário de redefinição após o envio do email.
+    } catch (error) {
+      console.error("Erro ao enviar email de redefinição de senha:", error);
+      toast.warn("Ocorreu um erro ao enviar o email de redefinição de senha.");
+    }
   }
 
   return (
@@ -84,8 +103,24 @@ function Login() {
         </button>
       </form>
 
+      {showResetPassword ? (
+        <div className="reset-password-form">
+          <button onClick={handleResetPasswordRequest}>
+            Enviar Email de Redefinição
+          </button>
+        </div>
+      ) : (
+        <Link
+          className="forgot-password-link"
+          to="/"
+          onClick={() => setShowResetPassword(true)}
+        >
+          Esqueceu sua senha? Redefinir senha.
+        </Link>
+      )}
+
       <Link className="button-linkToRegister" to={"/register"}>
-        Não possui uma conta? Cadastre-se
+        Não possui uma conta? Cadastre-se.
       </Link>
     </div>
   );

@@ -71,6 +71,10 @@
   font-size: 14px;
 }
 
+.button-linkToLogin:hover {
+  color: #825ae0;
+}
+
 /* Tema Escuro */
 .dark-theme {
   background-color: #2b2730;
