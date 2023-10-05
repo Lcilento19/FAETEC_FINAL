@@ -1,12 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": {
+      "/home": {
         target: "https://apimultiai.squareweb.app", // Substitua pelo URL do seu servidor de backend
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
