@@ -48,7 +48,7 @@ function OpenAI() {
   const handleGenerateText = async () => {
     try {
       const requestBody = { prompt };
-      const response = await fetch("http://localhost:5000/generate-text", {
+      const response = await fetch("https://apichat.vercel.app/generate-text", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
