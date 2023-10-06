@@ -40,7 +40,7 @@
 }
 
 .stopwatchButton {
-  background-color: rgba(20, 130, 221, 0.856);
+  background-color: #9575de;
   color: white;
   border: none;
   border-radius: 50px;
@@ -52,7 +52,7 @@
 }
 
 .stopwatchButton:hover {
-  background-color: rgba(20, 130, 221, 1);
+  background-color: #9575de;
 }
 
 .stopwatchTime {
@@ -62,7 +62,7 @@
 
 /* Botão "Mostrar Cronômetro" */
 .showStopwatchButton {
-  background-color: rgba(0, 81, 255, 0.7);
+  background-color: #825ae0;
   color: white;
   border: none;
   border-radius: 5px;
@@ -77,7 +77,7 @@
 }
 
 .showStopwatchButton:hover {
-  background-color: rgba(0, 110, 255, 0.9);
+  background-color: #9575de;
 }
 
 /* Botão "Esconder Cronômetro" */
@@ -121,7 +121,7 @@
 }
 
 .setTargetTimeButton {
-  background-color: rgba(20, 130, 221, 0.856);
+  background-color: #9575de;
   color: white;
   border: none;
   border-radius: 5px;
@@ -132,5 +132,5 @@
 }
 
 .setTargetTimeButton:hover {
-  background-color: rgba(20, 130, 221, 1);
+  background-color: #9575de;
 }

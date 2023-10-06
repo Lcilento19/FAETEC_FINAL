@@ -38,6 +38,7 @@ function Login() {
         })
         .catch(() => {
           console.log("Erro ao fazer login");
+          toast.warn("Email ou Senha incorreto(s)");
         });
     } else {
       toast.warn("Preencha os campos");
@@ -64,7 +65,7 @@ function Login() {
       toast.success(
         "Um link de redefinição de senha foi enviado para o seu email."
       );
-      setShowResetPassword(false); // Oculta o formulário de redefinição após o envio do email.
+      setShowResetPassword(false);
     } catch (error) {
       console.error("Erro ao enviar email de redefinição de senha:", error);
       toast.warn("Ocorreu um erro ao enviar o email de redefinição de senha.");
@@ -105,7 +106,10 @@ function Login() {
 
       {showResetPassword ? (
         <div className="reset-password-form">
-          <button onClick={handleResetPasswordRequest}>
+          <button
+            className="reset-password-form-button"
+            onClick={handleResetPasswordRequest}
+          >
             Enviar Email de Redefinição
           </button>
         </div>

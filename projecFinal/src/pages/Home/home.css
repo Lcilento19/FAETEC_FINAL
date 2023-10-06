@@ -1,3 +1,8 @@
+.home-container {
+  text-align: center;
+  vertical-align: middle;
+}
+
 .logout {
   background-color: rgba(228, 49, 18, 0.7);
   margin-top: 10px;
@@ -19,7 +24,7 @@
 }
 
 .TextEditorButton {
-  background-color: rgba(0, 81, 255, 0.7);
+  background-color: #825ae0;
   color: white;
   border: none;
   border-radius: 5px;
@@ -35,7 +40,7 @@
 }
 
 .TodoListButton {
-  background-color: rgba(0, 81, 255, 0.7);
+  background-color: #825ae0;
   color: white;
   border: none;
   border-radius: 5px;

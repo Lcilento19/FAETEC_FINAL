@@ -51,10 +51,10 @@ export default function Home() {
       <button className="logout" onClick={handleLogout}>
         SAIR
       </button>
-      <Link className="TextEditorButton" target="_blank" to={"/editor"}>
+      <Link className="TextEditorButton" target="_self" to={"/editor"}>
         Editor de Texto
       </Link>
-      <Link className="TodoListButton" target="_blank" to={"/todoList"}>
+      <Link className="TodoListButton" target="_self" to={"/todoList"}>
         Lista de tarefas
       </Link>
       <Calculator />

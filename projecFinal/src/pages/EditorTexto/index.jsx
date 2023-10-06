@@ -42,6 +42,14 @@ function TextEditor() {
     setText("");
   };
 
+  const colorDarkTheme = () => {
+    if (textColor == "#000000") {
+      setTextColor("#FFFFFF");
+    } else {
+      setTextColor("#000000");
+    }
+  };
+
   const containerClassName = temaEscuro
     ? "editor-container dark-theme"
     : "editor-container";
@@ -58,22 +66,37 @@ function TextEditor() {
       <Link className="TextEditorButton" to={"/home"}>
         Home
       </Link>
-      <TemaEscuroToggle />
+      <TemaEscuroToggle onClick={colorDarkTheme} />
       <div className="buttons-editor">
-        <button className="format-button" onClick={handleBoldClick}>
+        <button
+          className="format-button editor-container-button"
+          onClick={handleBoldClick}
+        >
           Negrito
         </button>
-        <button className="format-button" onClick={handleItalicClick}>
+        <button
+          className="format-button editor-container-button"
+          onClick={handleItalicClick}
+        >
           Itálico
         </button>
 
-        <button className="size-button" onClick={increaseFontSize}>
+        <button
+          className="size-button editor-container-button"
+          onClick={increaseFontSize}
+        >
           +
         </button>
-        <button className="size-button" onClick={decreaseFontSize}>
+        <button
+          className="size-button editor-container-button"
+          onClick={decreaseFontSize}
+        >
           -
         </button>
-        <button className="delete-button" onClick={handleDelete}>
+        <button
+          className="delete-button editor-container-button"
+          onClick={handleDelete}
+        >
           Apagar
         </button>
         <input

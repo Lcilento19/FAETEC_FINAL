@@ -78,22 +78,102 @@ function Calculator() {
         <div className="calculator-content">
           <div className="display">{display}</div>
           <div className="buttons">
-            <button onClick={() => handleDigitClick("7")}>7</button>
-            <button onClick={() => handleDigitClick("8")}>8</button>
-            <button onClick={() => handleDigitClick("9")}>9</button>
-            <button onClick={() => handleOperatorClick("+")}>+</button>
-            <button onClick={() => handleDigitClick("4")}>4</button>
-            <button onClick={() => handleDigitClick("5")}>5</button>
-            <button onClick={() => handleDigitClick("6")}>6</button>
-            <button onClick={() => handleOperatorClick("-")}>-</button>
-            <button onClick={() => handleDigitClick("1")}>1</button>
-            <button onClick={() => handleDigitClick("2")}>2</button>
-            <button onClick={() => handleDigitClick("3")}>3</button>
-            <button onClick={() => handleOperatorClick("*")}>*</button>
-            <button onClick={() => handleDigitClick("0")}>0</button>
-            <button onClick={() => handleClearClick()}>C</button>
-            <button onClick={() => handleEqualClick()}>=</button>
-            <button onClick={() => handleOperatorClick("/")}>/</button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("7")}
+            >
+              7
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("8")}
+            >
+              8
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("9")}
+            >
+              9
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleOperatorClick("+")}
+            >
+              +
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("4")}
+            >
+              4
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("5")}
+            >
+              5
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("6")}
+            >
+              6
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleOperatorClick("-")}
+            >
+              -
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("1")}
+            >
+              1
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("2")}
+            >
+              2
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("3")}
+            >
+              3
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleOperatorClick("*")}
+            >
+              *
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleDigitClick("0")}
+            >
+              0
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleClearClick()}
+            >
+              C
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleEqualClick()}
+            >
+              =
+            </button>
+            <button
+              className="btn-calculator"
+              onClick={() => handleOperatorClick("/")}
+            >
+              /
+            </button>
           </div>
         </div>
       </div>

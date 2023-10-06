@@ -6,7 +6,10 @@ import "../../components/TemaEscuro/temaEscuro.css";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../config/firebaseConnection";
 
+import { toast } from "react-toastify";
 function Register() {
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
@@ -33,9 +36,20 @@ function Register() {
           );
           const user = userCredential.user;
 
+          // Use o uid do usuário como o ID da pessoa
           const idDaPessoa = user.uid;
 
-          alert("Cadastrado com sucesso");
+          // Salve as informações no Firestore com o mesmo ID da pessoa
+          // Você pode adicionar mais campos, se necessário
+          const userDocRef = doc(db, "contas", idDaPessoa);
+          await setDoc(userDocRef, {
+            idDaPessoa: idDaPessoa,
+            nome: nome,
+            email: email,
+            senha: password1,
+          });
+
+          toast.success("Cadastrado com sucesso");
 
           navigate("/", { replace: true });
         }

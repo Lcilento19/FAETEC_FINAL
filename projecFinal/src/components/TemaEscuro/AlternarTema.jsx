@@ -3,11 +3,14 @@ import { useTema } from "./TemaContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
-function AlternarTema() {
+function AlternarTema({ onClick }) {
   const { temaEscuro, toggleTema } = useTema();
 
   const toggleTemaClick = () => {
     toggleTema();
+    if (onClick) {
+      onClick(); // Chama a função onClick passada como propriedade, se existir.
+    }
   };
 
   return (

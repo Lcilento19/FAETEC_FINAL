@@ -18,7 +18,7 @@
 }
 
 .titulo-ia {
-  background-color: #007bff;
+  background-color: #9575de;
   color: #fff;
   text-align: center;
   margin: 0;
@@ -27,7 +27,7 @@
 }
 
 .showOpenAIButton {
-  background-color: rgba(0, 81, 255, 0.7);
+  background-color: #825ae0;
   color: white;
   border: none;
   border-radius: 5px;
@@ -42,7 +42,7 @@
 }
 
 .showOpenAIButton:hover {
-  background-color: #0056b3;
+  background-color: #9575de;
 }
 
 .chat-container {
@@ -81,7 +81,7 @@
 }
 
 .botao {
-  background-color: #007bff;
+  background-color: #9575de;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -91,7 +91,7 @@
 }
 
 .botao:hover {
-  background-color: #0056b3;
+  background-color: #825ae0;
 }
 
 /* Estilo para código destacado */
@@ -113,4 +113,3 @@
   font-size: 14px;
   overflow-x: auto;
 }
-

@@ -21,8 +21,8 @@
 }
 
 /* Estilo para os botões de formatação */
-.editor-container button {
-  background-color: #007bff;
+.editor-container-button {
+  background-color: #9575de;
   color: #fff;
   border: none;
   border-radius: 4px;

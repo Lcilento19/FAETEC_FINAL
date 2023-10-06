@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import "./todolist.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { auth, db } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
+
+import { toast } from "react-toastify";
 
 import {
   addDoc,
@@ -64,7 +66,7 @@ export default function TodoList() {
     e.preventDefault();
 
     if (tarefaInput === "") {
-      alert("Digite sua tarefa...");
+      toast.warn("Digite sua tarefa...");
       return;
     }
 
@@ -79,11 +81,12 @@ export default function TodoList() {
       userUid: user?.uid,
     })
       .then(() => {
-        console.log("TAREFA REGISTRADA");
+        toast.success("TAREFA REGISTRADA");
         setTarefaInput("");
       })
       .catch((error) => {
         console.log("ERRO AO REGISTRAR " + error);
+        toast.warn("Erro ao registrar tarefa.");
       });
   }
 
@@ -107,12 +110,12 @@ export default function TodoList() {
       tarefa: tarefaInput,
     })
       .then(() => {
-        console.log("TAREFA ATUALIZADA");
+        toast.success("TAREFA ATUALIZADA");
         setTarefaInput("");
         setEdit({});
       })
       .catch(() => {
-        console.log("ERRO AO ATUALIZAR");
+        toast.warn("ERRO AO ATUALIZAR");
         setTarefaInput("");
         setEdit({});
       });
@@ -145,7 +148,7 @@ export default function TodoList() {
           <p>{item.tarefa}</p>
 
           <div>
-            <button onClick={() => editTarefa(item)}>Editar</button>
+            <button className="btn-edit" onClick={() => editTarefa(item)}>Editar</button>
             <button
               onClick={() => deleteTarefa(item.id)}
               className="btn-delete"
@@ -156,9 +159,9 @@ export default function TodoList() {
         </article>
       ))}
 
-      <button className="btn-logout" onClick={handleLogout}>
-        Sair
-      </button>
+      <Link className="btn-logout" target="_self" to={"/home"}>
+        Home
+      </Link>
     </div>
   );
 }
