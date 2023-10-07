@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 48px;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
 }
 
 .admin-container h1 {

@@ -6,7 +6,9 @@ import { auth, db } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
 
 import { toast } from "react-toastify";
-
+import "../../components/TemaEscuro/temaEscuro.css";
+import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
+import { useTema } from "../../components/TemaEscuro/TemaContext";
 import {
   addDoc,
   collection,
@@ -25,6 +27,7 @@ export default function TodoList() {
   const [user, setUser] = useState({});
   const [edit, setEdit] = useState({});
   const navigate = useNavigate();
+  const { temaEscuro, toggleTema } = useTema();
 
   const [tarefas, setTarefas] = useState([]);
 
@@ -122,7 +125,9 @@ export default function TodoList() {
   }
 
   return (
-    <div className="admin-container">
+    <div className={`admin-container ${temaEscuro ? "dark-theme" : ""}`}>
+      <h1 className="title-login">Multi</h1>
+      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
       <h1>Minhas tarefas</h1>
 
       <form className="form" onSubmit={handleRegister}>
@@ -148,7 +153,9 @@ export default function TodoList() {
           <p>{item.tarefa}</p>
 
           <div>
-            <button className="btn-edit" onClick={() => editTarefa(item)}>Editar</button>
+            <button className="btn-edit" onClick={() => editTarefa(item)}>
+              Editar
+            </button>
             <button
               onClick={() => deleteTarefa(item.id)}
               className="btn-delete"
