@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./editorTexto.css";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
@@ -42,13 +42,18 @@ function TextEditor() {
     setText("");
   };
 
-  const colorDarkTheme = () => {
+  async function colorDarkTheme() {
     if (textColor == "#000000") {
       setTextColor("#FFFFFF");
     } else {
       setTextColor("#000000");
     }
-  };
+  }
+  useEffect(() => {
+    colorDarkTheme();
+  }, []);
+
+  useEffect;
 
   const containerClassName = temaEscuro
     ? "editor-container dark-theme"

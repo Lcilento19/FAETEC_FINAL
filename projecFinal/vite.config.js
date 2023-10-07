@@ -5,11 +5,15 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/home": {
+      "/api": {
         target: "https://apimultiai.squareweb.app",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+    },
+    headers: {
+      source: "/(.*)",
+      headers: [{ key: "Cross-Origin-Opener-Policy", value: "same-origin" }],
     },
   },
 });
