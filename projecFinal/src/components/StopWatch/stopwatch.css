@@ -58,6 +58,7 @@
 .stopwatchTime {
   font-size: 24px;
   margin: 10px 0;
+  color: black;
 }
 
 /* Botão "Mostrar Cronômetro" */
@@ -134,3 +135,4 @@
 .setTargetTimeButton:hover {
   background-color: #9575de;
 }
+
