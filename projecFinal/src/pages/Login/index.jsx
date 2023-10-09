@@ -20,8 +20,8 @@ import { toast } from "react-toastify";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [authMethod, setAuthMethod] = useState(""); // Método de autenticação
-  const [showResetPassword, setShowResetPassword] = useState(false); // Estado para controlar a exibição do formulário de redefinição
+  const [authMethod, setAuthMethod] = useState("");
+  const [showResetPassword, setShowResetPassword] = useState(false);
   const navigate = useNavigate();
   const { temaEscuro, toggleTema } = useTema();
 
@@ -33,7 +33,7 @@ function Login() {
 
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          setAuthMethod("emailAndPassword"); // Defina o método de autenticação
+          setAuthMethod("emailAndPassword");
           navigate("/home", { replace: true });
         })
         .catch(() => {
@@ -51,7 +51,7 @@ function Login() {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        setAuthMethod("googleAccount"); // Defina o método de autenticação
+        setAuthMethod("googleAccount");
         navigate("/home", { replace: true });
       })
       .catch((error) => {

@@ -13,7 +13,13 @@ export default defineConfig({
     },
     headers: {
       source: "/(.*)",
-      headers: [{ key: "Cross-Origin-Opener-Policy", value: "same-origin" }],
+      headers: [
+        { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+        {
+          key: "Cross-Origin-Opener-Policy",
+          value: " same-origin-allow-popups",
+        },
+      ],
     },
   },
 });
