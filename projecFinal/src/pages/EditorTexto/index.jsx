@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./editorTexto.css";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
-
 import { Link } from "react-router-dom";
 
 function TextEditor() {
@@ -12,7 +11,22 @@ function TextEditor() {
   const [textColor, setTextColor] = useState("#000000");
   const [fontSize, setFontSize] = useState(16);
 
+  const fontOptions = [
+    "Arial, sans-serif",
+    "Helvetica, sans-serif",
+    "Times New Roman, serif",
+    "Georgia, serif",
+    "Verdana, sans-serif",
+    "Courier New, monospace",
+  ];
+
+  const [selectedFont, setSelectedFont] = useState(fontOptions[0]);
+
   const { temaEscuro } = useTema();
+
+  const handleFontChange = (e) => {
+    setSelectedFont(e.target.value);
+  };
 
   const handleBoldClick = () => {
     setIsBold(!isBold);
@@ -42,28 +56,24 @@ function TextEditor() {
     setText("");
   };
 
-  async function colorDarkTheme() {
-    if (textColor == "#000000") {
-      setTextColor("#FFFFFF");
-    } else {
-      setTextColor("#000000");
-    }
-  }
-  useEffect(() => {
-    colorDarkTheme();
-  }, []);
-
-  useEffect;
-
   const containerClassName = temaEscuro
     ? "editor-container dark-theme"
     : "editor-container";
+
+  useEffect(() => {
+    if (temaEscuro) {
+      setTextColor("#ffffff"); // Altere a cor para branco quando o tema escuro estiver ativo
+    } else {
+      setTextColor("#000000");
+    }
+  }, [temaEscuro]); // Certifique-se de adicionar temaEscuro como dependência
 
   const textareaStyle = {
     fontWeight: isBold ? "bold" : "normal",
     fontStyle: isItalic ? "italic" : "normal",
     color: textColor,
     fontSize: `${fontSize}px`,
+    fontFamily: selectedFont,
   };
 
   return (
@@ -71,7 +81,7 @@ function TextEditor() {
       <Link className="TextEditorButton" to={"/home"}>
         Home
       </Link>
-      <TemaEscuroToggle onClick={colorDarkTheme} />
+      <TemaEscuroToggle />
       <div className="buttons-editor">
         <button
           className="format-button editor-container-button"
@@ -85,7 +95,6 @@ function TextEditor() {
         >
           Itálico
         </button>
-
         <button
           className="size-button editor-container-button"
           onClick={increaseFontSize}
@@ -110,6 +119,18 @@ function TextEditor() {
           onChange={handleColorChange}
           className="color-input"
         />
+        <select
+          id="fontSelect"
+          value={selectedFont}
+          onChange={handleFontChange}
+          className="font-select"
+        >
+          {fontOptions.map((font, index) => (
+            <option key={index} value={font}>
+              {font}
+            </option>
+          ))}
+        </select>
         <textarea
           rows="10"
           cols="50"
