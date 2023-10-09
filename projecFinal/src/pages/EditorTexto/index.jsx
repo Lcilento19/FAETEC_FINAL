@@ -82,6 +82,8 @@ function TextEditor() {
         Home
       </Link>
       <TemaEscuroToggle />
+      <h1 className="title-login">Multi</h1>
+
       <div className="buttons-editor">
         <button
           className="format-button editor-container-button"

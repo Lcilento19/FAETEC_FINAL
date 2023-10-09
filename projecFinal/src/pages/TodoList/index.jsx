@@ -128,7 +128,6 @@ export default function TodoList() {
     <div className={`admin-container ${temaEscuro ? "dark-theme" : ""}`}>
       <h1 className="title-login">Multi</h1>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
-      <h1>Minhas tarefas</h1>
 
       <form className="form" onSubmit={handleRegister}>
         <textarea

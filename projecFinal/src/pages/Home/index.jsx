@@ -45,6 +45,7 @@ export default function Home() {
   return (
     <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />{" "}
+      <h1 className="title-login">Multi</h1>
       <p className="user">
         Bem-vindo, <span>{userName || "Usuário"}</span>!
       </p>
