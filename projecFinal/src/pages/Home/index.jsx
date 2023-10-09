@@ -75,7 +75,7 @@ export default function Home() {
     <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />
       <h1 className="title-login">Multi</h1>
-      <img src={profilePic} alt="" />
+      <img className="profile-picture" src={profilePic} alt="" />
       {user && user.providerData[0].providerId === "password" && (
         <>
           <input
