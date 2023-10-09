@@ -7,7 +7,8 @@ import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../config/firebaseConnection";
+import { db, storage } from "../../config/firebaseConnection";
+import { ref, getDownloadURL } from "firebase/storage";
 
 import { toast } from "react-toastify";
 function Register() {
@@ -17,6 +18,8 @@ function Register() {
   const [nome, setNome] = useState("");
   const navigate = useNavigate();
   const { temaEscuro } = useTema();
+  const [profilePic, setProfilePic] = useState(null);
+
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -47,6 +50,7 @@ function Register() {
             nome: nome,
             email: email,
             senha: password1,
+            profilePic: profilePic,
           });
 
           toast.success("Cadastrado com sucesso");
