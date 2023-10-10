@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Stopwatch from "../../components/StopWatch";
 import OpenAI from "../../components/OpenAI";
 import Calculator from "../../components/Calculator";
-import "./home.css"; // Importe o arquivo CSS
-
+import "./home.css";
 import { auth, db, storage } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
 import { doc, getDoc, collection, updateDoc } from "firebase/firestore";
@@ -53,16 +52,15 @@ export default function Home() {
     }
   };
 
-  const handleUpdateProfilePic = async () => {
-    if (newProfilePic) {
+  const handleUpdateProfilePic = async (file) => {
+    if (file) {
       const storageRef = ref(storage, `profileImages/${user.uid}`);
-      const uploadTask = uploadBytesResumable(storageRef, newProfilePic);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
       try {
         await uploadTask;
         const downloadURL = await getDownloadURL(storageRef);
         setProfilePic(downloadURL);
-        setNewProfilePic(null);
 
         const userDocRef = doc(collection(db, "contas"), user.uid);
         await updateDoc(userDocRef, { profilePic: downloadURL });
@@ -72,39 +70,47 @@ export default function Home() {
     }
   };
 
+  const handleProfilePicClick = () => {
+    if (user && user.providerData[0].providerId === "password") {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleProfilePicChange = (e) => {
+    if (e.target.files[0]) {
+      setNewProfilePic(e.target.files[0]);
+      handleUpdateProfilePic(e.target.files[0]);
+    }
+  };
+
   return (
     <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />
-      <h1 className="title-login">Multi</h1>
-      <img className="profile-picture" src={profilePic} alt="" />
-      {user && user.providerData[0].providerId === "password" && (
-        <>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-            ref={fileInputRef}
-          />
-          <button
-            className="button-home"
-            onClick={() => fileInputRef.current.click()}
-          >
-            Escolher Nova Foto
-          </button>
-          {newProfilePic && (
-            <button className="button-home" onClick={handleUpdateProfilePic}>
-              Salvar Nova Foto
+      <div className="header">
+        {user && user.providerData[0].providerId === "password" && (
+          <div className="user-info">
+            <label
+              htmlFor="fileInput"
+              className="profile-picture-label"
+              onClick={handleProfilePicClick}
+            >
+              <img className="profile-picture" src={profilePic} alt="" />
+            </label>
+            <span>{userName || "Usuário"}</span>
+            <button className="logout" onClick={handleLogout}>
+              SAIR
             </button>
-          )}
-        </>
-      )}
-      <p className="user">
-        Bem-vindo, <span>{userName || "Usuário"}</span>!
-      </p>
-      <button className="logout" onClick={handleLogout}>
-        SAIR
-      </button>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleProfilePicChange}
+              style={{ display: "none" }}
+              ref={fileInputRef}
+            />
+          </div>
+        )}
+      </div>
+
       <Link className="TextEditorButton" target="_self" to={"/editor"}>
         Editor de Texto
       </Link>

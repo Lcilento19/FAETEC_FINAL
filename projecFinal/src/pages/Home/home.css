@@ -1,3 +1,4 @@
+/* home.css */
 .home-container {
   display: flex;
   flex-direction: column;
@@ -5,11 +6,44 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
+  position: relative;
+}
+
+.header {
+  background-color: #825ae0;
+  color: white;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end; /* Alterado para flex-end para alinhar à direita */
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.user-info span {
+  font-weight: bolder;
+  font-size: 18px;
+  margin-right: 50px;
 }
 
 .logout {
   background-color: rgba(228, 49, 18, 0.7);
-  margin-top: 10px;
   color: white;
   border: none;
   border-radius: 5px;
@@ -23,10 +57,6 @@
   background-color: rgba(255, 38, 0, 0.9);
 }
 
-.user > span {
-  font-weight: bolder;
-}
-
 .TextEditorButton {
   background-color: #825ae0;
   color: white;
@@ -38,7 +68,7 @@
   transition: background-color 0.3s ease;
   position: fixed;
   left: 20px;
-  top: 110px;
+  top: 240px;
   z-index: 9999;
   text-decoration: none;
 }
@@ -54,7 +84,7 @@
   transition: background-color 0.3s ease;
   position: fixed;
   left: 20px;
-  top: 140px;
+  top: 280px;
   z-index: 9999;
   text-decoration: none;
 }
@@ -79,12 +109,9 @@
   background-color: #825ae0;
 }
 
-/* styles.css */
-
 .profile-picture {
-  padding: 10px;
-  width: 200px; /* Defina a largura da imagem como 128px */
-  height: 200px; /* Defina a altura da imagem como 128px */
-  max-width: 100%; /* Certifique-se de que a largura não exceda 100% do contêiner pai */
-  height: auto; /* Garanta que a altura seja ajustada automaticamente proporcionalmente à largura */
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  margin-left: auto; /* Alinhar a foto à direita */
 }

@@ -74,23 +74,12 @@
   transition: background-color 0.3s ease;
   position: fixed;
   left: 20px;
-  top: 80px;
+  top: 120px;
   z-index: 9999;
 }
 
 .showCalculatorButton:hover {
   background-color: #825ae0;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: right 0.3s ease; /* Adicione uma transição para a animação */
-  position: fixed;
-  left: 20px;
-  top: 80px;
-  z-index: 9999;
 }
 
 .hideCalculatorButton {
