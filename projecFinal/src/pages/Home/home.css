@@ -79,7 +79,12 @@
   background-color: #825ae0;
 }
 
+/* styles.css */
+
 .profile-picture {
-  height: 128px;
-  width: 128px;
+  padding: 10px;
+  width: 200px; /* Defina a largura da imagem como 128px */
+  height: 200px; /* Defina a altura da imagem como 128px */
+  max-width: 100%; /* Certifique-se de que a largura não exceda 100% do contêiner pai */
+  height: auto; /* Garanta que a altura seja ajustada automaticamente proporcionalmente à largura */
 }

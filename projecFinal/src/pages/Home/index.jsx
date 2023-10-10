@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import Stopwatch from "../../components/StopWatch";
 import OpenAI from "../../components/OpenAI";
 import Calculator from "../../components/Calculator";
-import "./home.css";
+import "./home.css"; // Importe o arquivo CSS
+
 import { auth, db, storage } from "../../config/firebaseConnection";
 import { signOut } from "firebase/auth";
 import { doc, getDoc, collection, updateDoc } from "firebase/firestore";
@@ -85,11 +86,16 @@ export default function Home() {
             style={{ display: "none" }}
             ref={fileInputRef}
           />
-          <button className="button-home" onClick={() => fileInputRef.current.click()}>
+          <button
+            className="button-home"
+            onClick={() => fileInputRef.current.click()}
+          >
             Escolher Nova Foto
           </button>
           {newProfilePic && (
-            <button className="button-home" onClick={handleUpdateProfilePic}>Salvar Nova Foto</button>
+            <button className="button-home" onClick={handleUpdateProfilePic}>
+              Salvar Nova Foto
+            </button>
           )}
         </>
       )}
