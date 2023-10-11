@@ -21,6 +21,7 @@ export default function Home() {
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [newProfilePic, setNewProfilePic] = useState(null);
+  const [newUserName, setNewUserName] = useState("");
   const fileInputRef = useRef(null);
 
   const user = auth.currentUser;
@@ -71,6 +72,15 @@ export default function Home() {
     }
   };
 
+  const handleUpdateUsername = async () => {
+    if (newUserName.trim() !== "") {
+      const userDocRef = doc(collection(db, "contas"), user.uid);
+      await updateDoc(userDocRef, { nome: newUserName });
+      setUserName(newUserName);
+      setNewUserName("");
+    }
+  };
+
   const handleProfilePicClick = () => {
     if (user && user.providerData[0].providerId === "password") {
       fileInputRef.current.click();
@@ -96,9 +106,14 @@ export default function Home() {
 
       <Dropdown.Menu className="dropdown-menu" style={{ marginTop: "20px" }}>
         {user && user.providerData[0].providerId === "password" && (
-          <Dropdown.Item onClick={handleProfilePicClick}>
-            Alterar Foto
-          </Dropdown.Item>
+          <>
+            <Dropdown.Item onClick={handleProfilePicClick}>
+              Alterar Foto
+            </Dropdown.Item>
+            <Dropdown.Item onClick={handleUpdateUsername}>
+              Alterar Nome
+            </Dropdown.Item>
+          </>
         )}
         <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
       </Dropdown.Menu>
@@ -113,13 +128,21 @@ export default function Home() {
           <LogoutDropdown />
           <span>{userName || "Usuário"}</span>
           {user && user.providerData[0].providerId === "password" && (
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleProfilePicChange}
-              style={{ display: "none" }}
-              ref={fileInputRef}
-            />
+            <>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleProfilePicChange}
+                style={{ display: "none" }}
+                ref={fileInputRef}
+              />
+              <input
+                type="text"
+                placeholder="Novo Nome"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
+              />
+            </>
           )}
         </div>
       </div>
