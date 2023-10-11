@@ -11,6 +11,7 @@ import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { Link } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import Dropdown from "react-bootstrap/Dropdown";
 
 async function handleLogout() {
   await signOut(auth);
@@ -83,23 +84,35 @@ export default function Home() {
     }
   };
 
+  const LogoutDropdown = () => (
+    <Dropdown className="custom-dropdown ">
+      <Dropdown.Toggle
+        variant="secondary"
+        className="dropdown"
+        id="dropdown-basic"
+      >
+        <img className="profile-picture" src={profilePic} alt="" />
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu className="dropdown-menu" style={{ marginTop: "20px" }}>
+        {user && user.providerData[0].providerId === "password" && (
+          <Dropdown.Item onClick={handleProfilePicClick}>
+            Alterar Foto
+          </Dropdown.Item>
+        )}
+        <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+
   return (
     <div className={`home-container ${temaEscuro ? "dark-theme" : ""}`}>
       <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />
       <div className="header">
-        {user && user.providerData[0].providerId === "password" && (
-          <div className="user-info">
-            <label
-              htmlFor="fileInput"
-              className="profile-picture-label"
-              onClick={handleProfilePicClick}
-            >
-              <img className="profile-picture" src={profilePic} alt="" />
-            </label>
-            <span>{userName || "Usuário"}</span>
-            <button className="logout" onClick={handleLogout}>
-              SAIR
-            </button>
+        <div className="user-info">
+          <LogoutDropdown />
+          <span>{userName || "Usuário"}</span>
+          {user && user.providerData[0].providerId === "password" && (
             <input
               type="file"
               accept="image/*"
@@ -107,8 +120,8 @@ export default function Home() {
               style={{ display: "none" }}
               ref={fileInputRef}
             />
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <Link className="TextEditorButton" target="_self" to={"/editor"}>

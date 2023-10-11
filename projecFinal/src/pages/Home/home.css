@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: flex-end; /* Alterado para flex-end para alinhar à direita */
+  justify-content: flex-end; /* Alinhe à direita */
   align-items: center;
 }
 
@@ -57,22 +57,7 @@
   background-color: rgba(255, 38, 0, 0.9);
 }
 
-.TextEditorButton {
-  background-color: #825ae0;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: fixed;
-  left: 20px;
-  top: 240px;
-  z-index: 9999;
-  text-decoration: none;
-}
-
+.TextEditorButton,
 .TodoListButton {
   background-color: #825ae0;
   color: white;
@@ -83,10 +68,18 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   position: fixed;
-  left: 20px;
-  top: 280px;
   z-index: 9999;
   text-decoration: none;
+}
+
+.TextEditorButton {
+  left: 20px;
+  top: 240px;
+}
+
+.TodoListButton {
+  left: 20px;
+  top: 280px;
 }
 
 .button-home {
@@ -113,5 +106,63 @@
   width: 128px;
   height: 128px;
   border-radius: 50%;
-  margin-left: auto; /* Alinhar a foto à direita */
+  margin-left: auto; /* Alinha à direita */
+  border: none; /* Remove a borda */
+}
+/* home.css */
+/* ... (código anterior) */
+
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px); /* Mova o menu para baixo */
+  right: 0;
+  z-index: 999;
+  display: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* ... (resto do código) */
+
+/* ... (resto do código) */
+
+#dropdown-basic {
+  background: none; /* Remove o background */
+  border: none;
+  outline: none; /* Remove a borda de foco padrão */
+  margin-right: -1vh;
+}
+
+/* Remove a borda quando o dropdown está ativo */
+.dropdown:active,
+#dropdown-basic:active,
+.custom-dropdown.show .dropdown-toggle:focus {
+  outline: none !important;
+  border: none !important; /* Remove a borda */
+  box-shadow: none !important; /* Remove a sombra */
+}
+
+/* Remove a borda do menu do Bootstrap quando clicado */
+.dropdown-item:focus {
+  outline: none !important;
+  border: none !important; /* Remove a borda */
+  box-shadow: none !important;
+}
+
+/* Remove a seta do dropdown */
+.custom-dropdown .dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Remove estilos do dropdown do Bootstrap */
+.custom-dropdown {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.custom-dropdown .dropdown-toggle:focus {
+  box-shadow: none !important;
+  border: none !important; /* Remove a borda */
 }
