@@ -13,7 +13,7 @@
 /* Estilize o alternador de tema */
 .alternar-tema {
   position: fixed;
-  top: 100px;
+  top: 110px;
   right: 0;
   background-color: transparent; /* Cor de fundo padrão */
   color: #333; /* Cor do texto padrão */

@@ -20,7 +20,6 @@ function Register() {
   const { temaEscuro } = useTema();
   const [profilePic, setProfilePic] = useState(null);
 
-
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -39,11 +38,8 @@ function Register() {
           );
           const user = userCredential.user;
 
-          // Use o uid do usuário como o ID da pessoa
           const idDaPessoa = user.uid;
 
-          // Salve as informações no Firestore com o mesmo ID da pessoa
-          // Você pode adicionar mais campos, se necessário
           const userDocRef = doc(db, "contas", idDaPessoa);
           await setDoc(userDocRef, {
             idDaPessoa: idDaPessoa,
@@ -78,7 +74,11 @@ function Register() {
     <div className={`login-container ${temaEscuro ? "dark-theme" : ""}`}>
       <h1>Cadastre-se</h1>
       <span>Vamos criar sua conta!</span>
-      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={() => {}} />
+      <TemaEscuroToggle
+        style={{ top: "0" }}
+        temaEscuro={temaEscuro}
+        toggleTema={() => {}}
+      />
 
       <form className="form" onSubmit={handleRegister}>
         <input

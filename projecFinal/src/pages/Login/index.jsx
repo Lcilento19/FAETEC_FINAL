@@ -75,7 +75,11 @@ function Login() {
   return (
     <div className={`login-container ${temaEscuro ? "dark-theme" : ""}`}>
       <h1 className="title-login">Multi</h1>
-      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
+      <TemaEscuroToggle
+        style={{ top: "0" }}
+        temaEscuro={temaEscuro}
+        toggleTema={toggleTema}
+      />
 
       <form className="form" onSubmit={handleLogin}>
         <input

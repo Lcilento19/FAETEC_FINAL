@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: flex-end; /* Alinhe à direita */
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -106,16 +106,13 @@
   width: 128px;
   height: 128px;
   border-radius: 50%;
-  margin-left: auto; /* Alinha à direita */
-  border: none; /* Remove a borda */
+  margin-left: auto;
+  border: none;
 }
-/* home.css */
-/* ... (código anterior) */
-
 
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 10px); /* Mova o menu para baixo */
+  top: calc(100% + 10px);
   right: 0;
   z-index: 999;
   display: none;
@@ -124,45 +121,66 @@
   padding: 10px;
 }
 
-/* ... (resto do código) */
-
-/* ... (resto do código) */
-
 #dropdown-basic {
-  background: none; /* Remove o background */
+  background: none;
   border: none;
-  outline: none; /* Remove a borda de foco padrão */
+  outline: none;
   margin-right: -1vh;
 }
 
-/* Remove a borda quando o dropdown está ativo */
 .dropdown:active,
 #dropdown-basic:active,
 .custom-dropdown.show .dropdown-toggle:focus {
   outline: none !important;
-  border: none !important; /* Remove a borda */
-  box-shadow: none !important; /* Remove a sombra */
-}
-
-/* Remove a borda do menu do Bootstrap quando clicado */
-.dropdown-item:focus {
-  outline: none !important;
-  border: none !important; /* Remove a borda */
+  border: none !important;
   box-shadow: none !important;
 }
 
-/* Remove a seta do dropdown */
+.dropdown-item:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .custom-dropdown .dropdown-toggle::after {
   display: none !important;
 }
 
-/* Remove estilos do dropdown do Bootstrap */
 .custom-dropdown {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
 }
+
 .custom-dropdown .dropdown-toggle:focus {
   box-shadow: none !important;
-  border: none !important; /* Remove a borda */
+  border: none !important;
+}
+
+.modal-dialog {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.modal-content {
+  border: 1px solid #825ae0 !important;
+  color: #070707 !important;
+}
+
+.modal-body input {
+  background: #fff !important;
+  color: #000 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.modal-body input:focus,
+.modal-body input:active {
+  background: #fff !important;
+  color: #000 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }

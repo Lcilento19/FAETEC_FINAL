@@ -81,7 +81,7 @@ function TextEditor() {
       <Link className="TextEditorButton" to={"/home"}>
         Home
       </Link>
-      <TemaEscuroToggle />
+      <TemaEscuroToggle style={{ top: "0" }} />
       <h1 className="title-login">Multi</h1>
 
       <div className="buttons-editor">

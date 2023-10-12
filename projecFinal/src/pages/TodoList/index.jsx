@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import "./todolist.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { auth, db } from "../../config/firebaseConnection";
-import { signOut } from "firebase/auth";
+import { db } from "../../config/firebaseConnection";
 
 import { toast } from "react-toastify";
 import "../../components/TemaEscuro/temaEscuro.css";
@@ -20,13 +19,11 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
-import { Navigate } from "react-router-dom";
 
 export default function TodoList() {
   const [tarefaInput, setTarefaInput] = useState("");
   const [user, setUser] = useState({});
   const [edit, setEdit] = useState({});
-  const navigate = useNavigate();
   const { temaEscuro, toggleTema } = useTema();
 
   const [tarefas, setTarefas] = useState([]);
@@ -93,10 +90,6 @@ export default function TodoList() {
       });
   }
 
-  async function handleLogout() {
-    await signOut(auth);
-  }
-
   async function deleteTarefa(id) {
     const docRef = doc(db, "tarefas", id);
     await deleteDoc(docRef);
@@ -127,7 +120,11 @@ export default function TodoList() {
   return (
     <div className={`admin-container ${temaEscuro ? "dark-theme" : ""}`}>
       <h1 className="title-login">Multi</h1>
-      <TemaEscuroToggle temaEscuro={temaEscuro} toggleTema={toggleTema} />
+      <TemaEscuroToggle
+        style={{ top: "0" }}
+        temaEscuro={temaEscuro}
+        toggleTema={toggleTema}
+      />
 
       <form className="form" onSubmit={handleRegister}>
         <textarea

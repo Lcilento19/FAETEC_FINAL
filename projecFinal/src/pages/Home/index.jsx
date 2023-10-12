@@ -12,6 +12,8 @@ import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { Link } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import Dropdown from "react-bootstrap/Dropdown";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 async function handleLogout() {
   await signOut(auth);
@@ -23,6 +25,7 @@ export default function Home() {
   const [newProfilePic, setNewProfilePic] = useState(null);
   const [newUserName, setNewUserName] = useState("");
   const fileInputRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
 
   const user = auth.currentUser;
   const { temaEscuro } = useTema();
@@ -72,12 +75,26 @@ export default function Home() {
     }
   };
 
-  const handleUpdateUsername = async () => {
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSaveName = () => {
     if (newUserName.trim() !== "") {
       const userDocRef = doc(collection(db, "contas"), user.uid);
-      await updateDoc(userDocRef, { nome: newUserName });
-      setUserName(newUserName);
-      setNewUserName("");
+      updateDoc(userDocRef, { nome: newUserName })
+        .then(() => {
+          setUserName(newUserName);
+          setNewUserName("");
+          handleCloseModal();
+        })
+        .catch((error) => {
+          console.error("Erro ao atualizar o nome:", error);
+        });
     }
   };
 
@@ -110,7 +127,7 @@ export default function Home() {
             <Dropdown.Item onClick={handleProfilePicClick}>
               Alterar Foto
             </Dropdown.Item>
-            <Dropdown.Item onClick={handleUpdateUsername}>
+            <Dropdown.Item onClick={handleShowModal}>
               Alterar Nome
             </Dropdown.Item>
           </>
@@ -136,12 +153,6 @@ export default function Home() {
                 style={{ display: "none" }}
                 ref={fileInputRef}
               />
-              <input
-                type="text"
-                placeholder="Novo Nome"
-                value={newUserName}
-                onChange={(e) => setNewUserName(e.target.value)}
-              />
             </>
           )}
         </div>
@@ -156,6 +167,39 @@ export default function Home() {
       <Calculator />
       <OpenAI />
       <Stopwatch />
+      <Modal
+        style={{ border: "none" }}
+        show={showModal}
+        onHide={handleCloseModal}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Alterar Nome</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input
+            type="text"
+            placeholder="Novo Nome"
+            value={newUserName}
+            onChange={(e) => setNewUserName(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            style={{ backgroundColor: "rgb(185, 34, 34)", border: "none" }}
+            onClick={handleCloseModal}
+          >
+            Fechar
+          </Button>
+          <Button
+            variant="primary"
+            style={{ backgroundColor: "#825ae0", border: "none" }}
+            onClick={handleSaveName}
+          >
+            Salvar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

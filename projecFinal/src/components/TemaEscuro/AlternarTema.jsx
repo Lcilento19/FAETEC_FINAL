@@ -3,7 +3,7 @@ import { useTema } from "./TemaContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
-function AlternarTema({ onClick }) {
+function AlternarTema({ onClick, style }) {
   const { temaEscuro, toggleTema } = useTema();
 
   const toggleTemaClick = () => {
@@ -17,6 +17,7 @@ function AlternarTema({ onClick }) {
     <div
       className={`alternar-tema ${temaEscuro ? "dark" : ""}`}
       onClick={toggleTemaClick}
+      style={style}
     >
       <label className="switch">
         {temaEscuro ? (
