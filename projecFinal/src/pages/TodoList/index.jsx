@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
-import "./todolist.css";
+import React, { useState, useEffect } from "react";
+import "./TodoList.css";
 import { Link } from "react-router-dom";
-
 import { db } from "../../config/firebaseConnection";
-
 import { toast } from "react-toastify";
-import "../../components/TemaEscuro/temaEscuro.css";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
 import {
@@ -25,8 +22,8 @@ export default function TodoList() {
   const [user, setUser] = useState({});
   const [edit, setEdit] = useState({});
   const { temaEscuro, toggleTema } = useTema();
-
   const [tarefas, setTarefas] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
 
   useEffect(() => {
     async function loadTarefas() {
@@ -45,16 +42,25 @@ export default function TodoList() {
 
         const unsub = onSnapshot(q, (snapshot) => {
           let lista = [];
+          let completedList = [];
 
           snapshot.forEach((doc) => {
-            lista.push({
+            const task = {
               id: doc.id,
               tarefa: doc.data().tarefa,
               userUid: doc.data().userUid,
-            });
+              completed: doc.data().completed,
+            };
+
+            if (doc.data().completed) {
+              completedList.push(task);
+            } else {
+              lista.push(task);
+            }
           });
 
           setTarefas(lista);
+          setCompletedTasks(completedList);
         });
       }
     }
@@ -79,6 +85,7 @@ export default function TodoList() {
       tarefa: tarefaInput,
       created: new Date(),
       userUid: user?.uid,
+      completed: false,
     })
       .then(() => {
         toast.success("TAREFA REGISTRADA");
@@ -114,6 +121,19 @@ export default function TodoList() {
         toast.warn("ERRO AO ATUALIZAR");
         setTarefaInput("");
         setEdit({});
+      });
+  }
+
+  async function handleConcluirTarefa(id) {
+    const docRef = doc(db, "tarefas", id);
+    await updateDoc(docRef, {
+      completed: true,
+    })
+      .then(() => {
+        toast.success("TAREFA CONCLUÍDA");
+      })
+      .catch(() => {
+        toast.warn("ERRO AO CONCLUIR TAREFA");
       });
   }
 
@@ -153,7 +173,7 @@ export default function TodoList() {
               Editar
             </button>
             <button
-              onClick={() => deleteTarefa(item.id)}
+              onClick={() => handleConcluirTarefa(item.id)} // Alterado aqui
               className="btn-delete"
             >
               Concluir
@@ -162,8 +182,8 @@ export default function TodoList() {
         </article>
       ))}
 
-      <Link className="btn-logout" target="_self" to={"/home"}>
-        Home
+      <Link className="btn-logout" target="_self" to="/tasks">
+        Ver Tarefas Concluídas
       </Link>
     </div>
   );

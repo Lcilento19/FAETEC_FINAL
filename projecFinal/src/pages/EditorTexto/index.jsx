@@ -62,11 +62,11 @@ function TextEditor() {
 
   useEffect(() => {
     if (temaEscuro) {
-      setTextColor("#ffffff"); // Altere a cor para branco quando o tema escuro estiver ativo
+      setTextColor("#ffffff"); 
     } else {
       setTextColor("#000000");
     }
-  }, [temaEscuro]); // Certifique-se de adicionar temaEscuro como dependência
+  }, [temaEscuro]); 
 
   const textareaStyle = {
     fontWeight: isBold ? "bold" : "normal",

@@ -37,13 +37,12 @@ export default function Private({ children }) {
   }, []);
 
   if (loading) {
-    return <div>Carregando...</div>; // Pode exibir um spinner de carregamento enquanto verifica a autenticação.
+    return <div>Carregando...</div>; 
   }
 
   if (!signed) {
-    return <Navigate to="/" replace={true} />; // Redireciona para a página de login.
+    return <Navigate to="/" replace={true} />; 
   }
 
-  // Se o usuário estiver autenticado, renderiza os componentes filhos (rotas protegidas).
   return <>{children}</>;
 }

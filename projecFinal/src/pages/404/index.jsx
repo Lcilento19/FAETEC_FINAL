@@ -16,10 +16,7 @@ const NotFound = () => {
                 <span>0</span>
               </h1>
               <h4 className="sub-title">Oops!</h4>
-              <p className="detail-text">
-                Sorry Bad Request, <br /> The HTTP request that was sent to the
-                server has invalid syntax.
-              </p>
+              <p className="detail-text">Essa Página não existe...</p>
               <div className="back-btn">
                 <Link className="btn" to={"/home"}>
                   Inicio

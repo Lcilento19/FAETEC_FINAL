@@ -7,7 +7,7 @@ function OpenAI() {
   const [messages, setMessages] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [showChat, setShowChat] = useState(false);
-  const [conversation, setConversation] = useState([]); // Defina a variável de conversa
+  const [conversation, setConversation] = useState([]);
 
   const addMessage = async (message, isResponse) => {
     const codeRegex = /```([a-zA-Z]+)([^]+?)```/g;

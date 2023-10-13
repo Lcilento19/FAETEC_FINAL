@@ -9,7 +9,7 @@ function AlternarTema({ onClick, style }) {
   const toggleTemaClick = () => {
     toggleTema();
     if (onClick) {
-      onClick(); // Chama a função onClick passada como propriedade, se existir.
+      onClick(); 
     }
   };
 

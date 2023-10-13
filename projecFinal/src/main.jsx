@@ -8,7 +8,9 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Private from "./routes/Private";
 import Erro404 from "./pages/404";
-import { TemaProvider } from "./components/TemaEscuro/TemaContext"; // Importe o provedor de tema
+import CompletedTasks from "./pages/CompletedTasks";
+
+import { TemaProvider } from "./components/TemaEscuro/TemaContext";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
     element: (
       <Private>
         <TodoList />
+      </Private>
+    ),
+  },
+  {
+    path: "/tasks",
+    element: (
+      <Private>
+        <CompletedTasks />
       </Private>
     ),
   },
