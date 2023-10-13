@@ -8,7 +8,6 @@ import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../../config/firebaseConnection";
-import { ref, getDownloadURL } from "firebase/storage";
 
 import { toast } from "react-toastify";
 function Register() {
@@ -18,7 +17,9 @@ function Register() {
   const [nome, setNome] = useState("");
   const navigate = useNavigate();
   const { temaEscuro } = useTema();
-  const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState(
+    "https://i.imgur.com/Ulz0rmr.jpg"
+  );
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -54,6 +55,9 @@ function Register() {
           navigate("/", { replace: true });
         }
       } catch (error) {
+        if (error) {
+          return;
+        }
         if (error.code === "auth/email-already-in-use") {
           alert("Este email já está em uso. Por favor, escolha outro.");
         } else if (error.code === "auth/invalid-email") {
@@ -83,25 +87,25 @@ function Register() {
       <form className="form" onSubmit={handleRegister}>
         <input
           type="email"
-          placeholder="email@email.com"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Your name"
+          placeholder="Nome Sobrenome"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Senha"
           value={password1}
           onChange={(e) => setPassword1(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Confirm Password"
+          placeholder="Confirmar senha"
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
         />

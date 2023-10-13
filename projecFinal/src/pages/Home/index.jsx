@@ -12,8 +12,7 @@ import { useTema } from "../../components/TemaEscuro/TemaContext";
 import { Link } from "react-router-dom";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import Dropdown from "react-bootstrap/Dropdown";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { Modal, Button } from "react-bootstrap";
 
 async function handleLogout() {
   await signOut(auth);
@@ -50,12 +49,6 @@ export default function Home() {
   useEffect(() => {
     fetchUserName();
   }, [user]);
-
-  const handleFileChange = (e) => {
-    if (e.target.files[0]) {
-      setNewProfilePic(e.target.files[0]);
-    }
-  };
 
   const handleUpdateProfilePic = async (file) => {
     if (file) {

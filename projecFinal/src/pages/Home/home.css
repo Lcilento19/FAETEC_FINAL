@@ -165,16 +165,12 @@
   align-items: center !important;
 }
 
-.modal-content {
-  border: 1px solid #825ae0 !important;
-  color: #070707 !important;
-}
-
 .modal-body input {
   background: #fff !important;
   color: #000 !important;
   outline: none !important;
   box-shadow: none !important;
+  width: 100% !important;
 }
 
 .modal-body input:focus,
