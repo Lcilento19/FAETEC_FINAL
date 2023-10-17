@@ -10,7 +10,7 @@ export default function CompletedTasks() {
   useEffect(() => {
     const userDetail = localStorage.getItem("@detailUser");
     setUser(JSON.parse(userDetail));
-  }, []); 
+  }, []);
 
   useEffect(() => {
     if (user && user.uid) {
@@ -36,10 +36,10 @@ export default function CompletedTasks() {
 
       return () => unsubscribe();
     }
-  }, [user]); 
+  }, [user]);
 
   return (
-    <div className="completed-tasks-container">
+    <div className="admin-container">
       <h1>Tarefas Concluídas</h1>
       <Link to="/todolist">Voltar</Link>
       <ul>

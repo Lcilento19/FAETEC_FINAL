@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./TodoList.css";
+import "./todolist.css";
 import { Link } from "react-router-dom";
 import { db } from "../../config/firebaseConnection";
 import { toast } from "react-toastify";
