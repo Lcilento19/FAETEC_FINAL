@@ -4,7 +4,6 @@
   position: fixed;
   top: 18vh; /* Alterado para a parte superior da tela */
   right: -300px;
-  margin-right: 5vh; /* Alterado para a direita inicialmente */
   width: 300px;
   background-color: #fff;
   box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.315);
@@ -16,7 +15,9 @@
 
 .calculator-container.show {
   right: 20px; /* Alterado para a direita quando a classe "show" é aplicada */
+margin-right: 5vh;
 }
+
 
 /* Resto do CSS é o mesmo */
 
