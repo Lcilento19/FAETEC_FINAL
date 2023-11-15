@@ -71,7 +71,11 @@ function Calculator() {
   return (
     <>
       <button className="showCalculatorButton" onClick={toggleCalculator}>
-        {showCalculator ? "Esconder Calculadora" : "Mostrar Calculadora"}
+        {showCalculator ? (
+          <img src="icons/calculadora_on.png" />
+        ) : (
+          <img src="icons/calculadora_off.png" />
+        )}
       </button>
       <div className={`calculator-container ${showCalculator ? "show" : ""}`}>
         <div className="calculator-title">Calculadora</div>

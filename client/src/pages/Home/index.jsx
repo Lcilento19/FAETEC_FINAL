@@ -151,15 +151,19 @@ export default function Home() {
         </div>
       </div>
 
+      <img src="world.png" />
+
       <Link className="TextEditorButton" target="_self" to={"/editor"}>
-        Editor de Texto
+        <img src="icons/editor.png" />
       </Link>
       <Link className="TodoListButton" target="_self" to={"/todoList"}>
-        Lista de tarefas
+      <img src="icons/todolist.png" />
       </Link>
+
       <Calculator />
       <OpenAI />
       <Stopwatch />
+
       <Modal
         style={{ border: "none" }}
         show={showModal}

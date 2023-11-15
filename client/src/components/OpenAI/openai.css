@@ -43,6 +43,9 @@
   background-color: #9575de;
 }
 
+.showOpenAIButton img {
+  width: 28px;
+}
 .chat-container {
   max-height: 300px;
   overflow-y: auto;

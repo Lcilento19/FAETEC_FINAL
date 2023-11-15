@@ -48,13 +48,16 @@ function OpenAI() {
   const handleGenerateText = async () => {
     try {
       const requestBody = { prompt };
-      const response = await fetch("https://chat-api-multi.onrender.com/generate-text", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        "https://chat-api-multi.onrender.com/generate-text",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       const responseData = await response.json();
       addMessage(prompt, false);
@@ -72,7 +75,11 @@ function OpenAI() {
   return (
     <div className={`openai-container ${showChat ? "show" : ""}`}>
       <button className="showOpenAIButton" onClick={toggleChat}>
-        {showChat ? "Esconder OpenAI" : "Mostrar OpenAI"}
+        {showChat ? (
+          <img src="icons/chat_on.png" />
+        ) : (
+          <img src="icons/chat_off.png" />
+        )}
       </button>
       <h1 className="titulo-ia">Chat Ia</h1>
       <div className="chat-container">

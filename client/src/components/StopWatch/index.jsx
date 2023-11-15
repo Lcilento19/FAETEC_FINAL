@@ -76,7 +76,11 @@ const Stopwatch = () => {
   return (
     <div className="timerContainer">
       <button className="showStopwatchButton" onClick={toggleStopwatch}>
-        {showStopwatch ? "Esconder Cronômetro" : "Mostrar Cronômetro"}
+        {showStopwatch ? (
+          <img src="icons/cronometro_on.png" />
+        ) : (
+          <img src="icons/cronometro_off.png" />
+        )}
       </button>
       <div className={`stopwatch ${showStopwatch ? "show" : ""}`}>
         <div className="stopwatchInputs">

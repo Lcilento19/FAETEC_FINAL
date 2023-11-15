@@ -1,4 +1,3 @@
-
 .calculator-container {
   position: fixed;
   top: 18vh;
@@ -13,10 +12,8 @@
 }
 
 .calculator-container.show {
-  right: 20px; 
+  right: 20px;
 }
-
-
 
 .calculator-title {
   background-color: #9575de;
@@ -79,6 +76,9 @@
   z-index: 9999;
 }
 
+.showCalculatorButton img {
+  width: 28px;
+}
 .showCalculatorButton:hover {
   background-color: #825ae0;
 }

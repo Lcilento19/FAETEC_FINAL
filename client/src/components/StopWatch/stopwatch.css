@@ -1,4 +1,3 @@
-
 .timerContainer {
   position: fixed;
   bottom: 0;
@@ -50,7 +49,9 @@
 .stopwatchButton:hover {
   background-color: #9575de;
 }
-
+.showStopwatchButton img {
+  width: 28px;
+}
 .stopwatchTime {
   font-size: 24px;
   margin: 10px 0;
@@ -128,4 +129,3 @@
 .setTargetTimeButton:hover {
   background-color: #9575de;
 }
-
