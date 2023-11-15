@@ -184,3 +184,8 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.world-image:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}

@@ -151,7 +151,7 @@ export default function Home() {
         </div>
       </div>
 
-      <img src="world.png" />
+      <img className="world-image" src="world.png" />
 
       <Link className="TextEditorButton" target="_self" to={"/editor"}>
         <img src="icons/editor.png" />
