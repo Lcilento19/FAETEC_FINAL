@@ -24,7 +24,7 @@ const conversation = [];
 
 app.post("/generate-text", async (req, res) => {
   try {
-    const prompt = req.body.prompt;
+    const prompt = String(req.body.prompt); // Converte para string
 
     conversation.push({ role: "user", content: prompt });
 
@@ -36,17 +36,23 @@ app.post("/generate-text", async (req, res) => {
       ],
     });
 
-    conversation.push({
-      role: "assistant",
-      content: response.choices[0].message.content,
-    });
+    const assistantMessage = String(response.choices[0]?.message?.content); // Converte para string
+    if (!assistantMessage) {
+      console.error("Resposta da API não contém a propriedade 'text'. Resposta completa:", response);
+      res.status(500).json({ error: "Something went wrong" });
+      return;
+    }
 
-    res.status(200).json({ text: response.choices[0].message.content });
+    conversation.push({ role: "assistant", content: assistantMessage });
+
+    res.status(200).json({ text: assistantMessage });
   } catch (error) {
-    console.error(error);
+    console.error("Erro na rota /generate-text:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
+
 
 app.listen(port, () => {
   console.log("\x1b[33m%s\x1b[0m", `[API] Iniciando...`);

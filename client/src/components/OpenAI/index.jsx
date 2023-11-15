@@ -10,6 +10,11 @@ function OpenAI() {
   const [conversation, setConversation] = useState([]);
 
   const addMessage = async (message, isResponse) => {
+    if (typeof message !== "string") {
+      console.error("Formato de mensagem inválido:", message);
+      return;
+    }
+
     const codeRegex = /```([a-zA-Z]+)([^]+?)```/g;
 
     const formattedMessage = await Promise.all(
@@ -25,7 +30,7 @@ function OpenAI() {
     );
 
     const newMessages = formattedMessage
-      .filter((part) => part !== undefined)
+      .filter(Boolean)
       .map((part) => ({ text: part, isResponse }));
 
     setMessages((prevMessages) => [...prevMessages, ...newMessages]);
@@ -47,9 +52,9 @@ function OpenAI() {
 
   const handleGenerateText = async () => {
     try {
-      const requestBody = { prompt };
+      const requestBody = { prompt: String(prompt) };
       const response = await fetch(
-        "https://chat-api-multi.onrender.com/generate-text",
+        "http://localhost:3001/generate-text",
         {
           method: "POST",
           headers: {
@@ -60,9 +65,17 @@ function OpenAI() {
       );
 
       const responseData = await response.json();
-      addMessage(prompt, false);
-      addMessage(responseData.text, true);
-      setPrompt("");
+
+      if (responseData.text !== undefined) {
+        addMessage(String(prompt), false);
+        addMessage(responseData.text, true);
+        setPrompt("");
+      } else {
+        console.error(
+          "Resposta da API não contém a propriedade 'text'.",
+          responseData
+        );
+      }
     } catch (error) {
       console.error(error);
     }

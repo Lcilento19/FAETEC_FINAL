@@ -1,8 +1,8 @@
 node_modules
-projecFinal/node_modules/*
-projecFinal/node_modules
-projecFinal/.env
+client/node_modules/*
+client/node_modules
+client/.env
 
-Api/node_modules/*
-Api/node_modules
-Api/.env
+server/node_modules/*
+server/node_modules
+server/.env
