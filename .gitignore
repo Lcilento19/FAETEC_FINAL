@@ -1,7 +1,8 @@
 node_modules
 projecFinal/node_modules/*
 projecFinal/node_modules
+projecFinal/.env
 
 Api/node_modules/*
 Api/node_modules
-
+Api/.env

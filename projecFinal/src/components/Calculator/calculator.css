@@ -1,8 +1,7 @@
-/* calculator.css */
 
 .calculator-container {
   position: fixed;
-  top: 18vh; /* Alterado para a parte superior da tela */
+  top: 18vh;
   right: -300px;
   width: 300px;
   background-color: #fff;
@@ -14,12 +13,10 @@
 }
 
 .calculator-container.show {
-  right: 20px; /* Alterado para a direita quando a classe "show" é aplicada */
-margin-right: 5vh;
+  right: 20px; 
 }
 
 
-/* Resto do CSS é o mesmo */
 
 .calculator-title {
   background-color: #9575de;

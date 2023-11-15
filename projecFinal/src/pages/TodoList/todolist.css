@@ -3,11 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Use min-height para garantir que o conteúdo se expanda além da tela quando necessário */
+  min-height: 100vh; 
   width: 100%;
-  position: relative; /* Adicione posição relativa para os elementos absolutos */
-  overflow-y: auto; /* Adicione uma barra de rolagem vertical quando o conteúdo ultrapassar a tela */
-  padding-bottom: 60px; /* Espaço para a barra de rolagem */
+  position: relative; 
+  overflow-y: auto;
+  padding-bottom: 60px; 
 }
 
 .admin-container h1 {

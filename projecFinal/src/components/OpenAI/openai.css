@@ -1,5 +1,3 @@
-/* OpenAI.css */
-
 .openai-container {
   position: fixed;
   bottom: 20px;
@@ -94,7 +92,6 @@
   background-color: #825ae0;
 }
 
-/* Estilo para código destacado */
 .hljs {
   background-color: #181717;
   border-radius: 5px;

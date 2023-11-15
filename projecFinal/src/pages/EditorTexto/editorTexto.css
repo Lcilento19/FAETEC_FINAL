@@ -14,13 +14,11 @@
   --cor-texto-tema-escuro: #fff;
 }
 
-/* Estilo para o contêiner do tema escuro */
 .editor-container.dark-theme {
   background-color: #2b2730;
   color: var(--cor-texto-tema-escuro);
 }
 
-/* Estilo para os botões de formatação */
 .editor-container-button {
   background-color: #9575de;
   color: #fff;
@@ -31,16 +29,14 @@
   cursor: pointer;
 }
 
-/* Estilo para o input de cor */
 .editor-container .color-input {
   vertical-align: middle;
   border-radius: 50%;
   cursor: pointer;
   background-color: transparent;
-  color: #fff; /* Cor do texto do input de cor no tema escuro */
+  color: #fff; 
 }
 
-/* Estilo para o textarea */
 .editor-container .text-area {
   width: 100%;
   margin-top: 10px;
@@ -53,13 +49,11 @@
   resize: none;
 }
 
-/* Estilo para o texto digitado */
 .editor-container h2 {
   margin-top: 20px;
   color: var(--cor-texto-tema-escuro);
 }
 
-/* Estilo para a visualização do texto digitado */
 .editor-container p {
   font-weight: bold;
   font-style: italic;

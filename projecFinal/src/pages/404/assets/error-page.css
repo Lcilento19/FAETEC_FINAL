@@ -1,30 +1,4 @@
-/* CSS File 
-  ===================
-    Item Name: Erratum - 404 Error pages + Coming soon + login
-    Author: Ashish Maraviya
-    Version: 3
-    Copyright 2023
-===================*/
-/*------------------------------------------------------------------
-  [ Master css file, Table of contents ]
 
-  00. General css
-  01. Page css
-
-------------------------------------------------------------*/
-/*------------------------------------------------------------------
-  # [Color codes]
-    color: #5076db;
-    color: #5bc86d;
-# */
-/*------------------------------------------------------------------
-  [Typography]
-
-  Body copy:      font-family: 'Montserrat', sans-serif;
--------------------------------------------------------------------*/
-/*==============
-  [00] Page General css
-=================*/
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -63,7 +37,7 @@ h6 {
   border-bottom: 16px double #5076db;
   width: 50px;
   height: 50px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
 
@@ -85,9 +59,7 @@ h6 {
     transform: rotate(360deg);
   }
 }
-/*==============
-  [01] Page css
-=================*/
+
 .page-section {
   background-image: url("../images/background-1.png");
   background-size: cover;

@@ -75,13 +75,11 @@
   color: #825ae0;
 }
 
-/* Tema Escuro */
 .dark-theme {
   background-color: #2b2730;
   color: aliceblue;
 }
 
-/* ... Outros estilos ... */
 
 .button-linkToLogin {
   color: #000000;
@@ -90,7 +88,6 @@
   font-size: 14px;
 }
 
-/* Estilo do botão-linkToRegister no tema escuro */
 .login-container.dark-theme .button-linkToLogin {
   color: aliceblue;
 }

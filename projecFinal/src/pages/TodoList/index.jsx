@@ -173,7 +173,7 @@ export default function TodoList() {
               Editar
             </button>
             <button
-              onClick={() => handleConcluirTarefa(item.id)} // Alterado aqui
+              onClick={() => handleConcluirTarefa(item.id)} 
               className="btn-delete"
             >
               Concluir
