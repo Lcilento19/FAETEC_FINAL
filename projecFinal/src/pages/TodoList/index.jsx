@@ -97,11 +97,6 @@ export default function TodoList() {
       });
   }
 
-  async function deleteTarefa(id) {
-    const docRef = doc(db, "tarefas", id);
-    await deleteDoc(docRef);
-  }
-
   function editTarefa(item) {
     setTarefaInput(item.tarefa);
     setEdit(item);
@@ -139,6 +134,9 @@ export default function TodoList() {
 
   return (
     <div className={`admin-container ${temaEscuro ? "dark-theme" : ""}`}>
+      <Link className="btn-home" to={"/home"}>
+        <img className="arrow_back" src="arrow_back.png" alt="" />
+      </Link>
       <h1 className="title-login">Multi</h1>
       <TemaEscuroToggle
         style={{ top: "0" }}
@@ -173,7 +171,7 @@ export default function TodoList() {
               Editar
             </button>
             <button
-              onClick={() => handleConcluirTarefa(item.id)} 
+              onClick={() => handleConcluirTarefa(item.id)}
               className="btn-delete"
             >
               Concluir
@@ -182,8 +180,8 @@ export default function TodoList() {
         </article>
       ))}
 
-      <Link className="btn-logout" target="_self" to="/tasks">
-        Ver Tarefas Concluídas
+      <Link className="btn-completed" target="_self" to="/tasks">
+        Concluídas
       </Link>
     </div>
   );

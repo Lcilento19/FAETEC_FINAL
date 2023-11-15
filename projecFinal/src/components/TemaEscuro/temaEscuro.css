@@ -1,27 +1,25 @@
-
 .dark-theme {
-  background-color: transparent; 
-  color: #fff; 
+  background-color: transparent;
+  color: #fff;
   transition: background-color 0.2s, color 0.2s;
 }
-
 
 .alternar-tema {
   position: fixed;
   top: 110px;
   right: 0;
   background-color: transparent;
-  color: #333; 
+  color: #333;
   display: flex;
   align-items: center;
   padding: 10px;
-  transition: background-color 0.2s, color 0.2s; 
+  transition: background-color 0.2s, color 0.2s;
 }
 
-  .alternar-tema.dark {
+.alternar-tema.dark {
   background-color: transparent;
-  color: #fff; 
-  transition: background-color 0.2s, color 0.2s; 
+  color: #fff;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .alternar-tema label {
@@ -36,14 +34,14 @@
 
 .icone-lua {
   margin-right: 8px;
-  color: #825ae0; 
+  color: #825ae0;
   background-color: transparent;
   cursor: pointer;
 }
 
 .icone-sol {
   margin-right: 8px;
-  color: rgb(221, 221, 219); 
+  color: rgb(221, 221, 219);
   background-color: transparent;
   cursor: pointer;
 }
@@ -57,3 +55,4 @@
     font-size: 16px;
   }
 }
+
