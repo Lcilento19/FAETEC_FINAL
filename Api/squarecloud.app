@@ -1,7 +1,0 @@
-DISPLAY_NAME=Api Multi
-DESCRIPTION=Api openAI Multi
-MAIN=index.js
-MEMORY=512
-SUBDOMAIN=apimultiai
-VERSION=recommended
-AUTORESTART=true
