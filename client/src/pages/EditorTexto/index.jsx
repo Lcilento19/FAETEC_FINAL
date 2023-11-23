@@ -62,11 +62,11 @@ function TextEditor() {
 
   useEffect(() => {
     if (temaEscuro) {
-      setTextColor("#ffffff"); 
+      setTextColor("#ffffff");
     } else {
       setTextColor("#000000");
     }
-  }, [temaEscuro]); 
+  }, [temaEscuro]);
 
   const textareaStyle = {
     fontWeight: isBold ? "bold" : "normal",
@@ -78,8 +78,8 @@ function TextEditor() {
 
   return (
     <div className={containerClassName}>
-      <Link className="TextEditorButton" to={"/home"}>
-        Home
+      <Link className="btn-home" to={"/home"}>
+        <img className="arrow_back" src="arrow_back.png" alt="" />
       </Link>
       <TemaEscuroToggle style={{ top: "0" }} />
       <h1 className="title-login">Multi</h1>

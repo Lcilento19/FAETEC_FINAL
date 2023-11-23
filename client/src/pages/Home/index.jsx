@@ -151,13 +151,14 @@ export default function Home() {
         </div>
       </div>
 
+      <h1 className="title-login">Multi</h1>
       <img className="world-image" src="world.png" />
 
       <Link className="TextEditorButton" target="_self" to={"/editor"}>
         <img src="icons/editor.png" />
       </Link>
       <Link className="TodoListButton" target="_self" to={"/todoList"}>
-      <img src="icons/todolist.png" />
+        <img src="icons/todolist.png" />
       </Link>
 
       <Calculator />
