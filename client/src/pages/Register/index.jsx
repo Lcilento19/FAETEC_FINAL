@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../components/TemaEscuro/temaEscuro.css";
 import TemaEscuroToggle from "../../components/TemaEscuro/AlternarTema";
 import { useTema } from "../../components/TemaEscuro/TemaContext";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../../config/firebaseConnection";
 
@@ -37,6 +37,9 @@ function Register() {
             email,
             password1
           );
+
+          await sendEmailVerification(userCredential.user);
+
           const user = userCredential.user;
 
           const idDaPessoa = user.uid;
@@ -50,7 +53,9 @@ function Register() {
             profilePic: profilePic,
           });
 
-          toast.success("Cadastrado com sucesso");
+          toast.success(
+            "Cadastrado com sucesso. Verifique seu e-mail para ativar a conta."
+          );
 
           navigate("/", { replace: true });
         }

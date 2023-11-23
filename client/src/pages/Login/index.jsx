@@ -32,9 +32,17 @@ function Login() {
       const auth = getAuth();
 
       await signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          setAuthMethod("emailAndPassword");
-          navigate("/home", { replace: true });
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          if (user.emailVerified) {
+            setAuthMethod("emailAndPassword");
+            navigate("/home", { replace: true });
+          } else {
+            toast.warn(
+              "Verifique seu e-mail para ativar a conta antes de fazer login."
+            );
+          }
         })
         .catch(() => {
           console.log("Erro ao fazer login");
