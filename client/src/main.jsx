@@ -16,7 +16,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TextEditor from "./pages/EditorTexto";
 import TodoList from "./pages/TodoList";
-import Footer from "./components/Footer";
 
 const router = createBrowserRouter([
   {
@@ -65,7 +64,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <TemaProvider>
       <ToastContainer autoClose={4000} />
       <RouterProvider router={router} />
-      <Footer />
     </TemaProvider>
   </React.StrictMode>
 );
