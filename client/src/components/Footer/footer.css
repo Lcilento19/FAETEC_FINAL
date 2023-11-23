@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remova o sublinhado padrão do link */
+  color: black;
+}
+
+.footer-image {
+  width: 56px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.title-login {
+  font-size: 20px;
+}
