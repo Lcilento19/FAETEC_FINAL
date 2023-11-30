@@ -20,7 +20,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.status(200).json({
     message:
-      "Welcome to Multi services. Use the correct route : https://chat-api-multi.onrender.com//generate-text",
+      "Welcome to Multi services. Use the correct route : https://chat-api-multi.onrender.com/generate-text",
   });
 });
 
