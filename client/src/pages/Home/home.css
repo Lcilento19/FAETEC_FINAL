@@ -189,3 +189,14 @@
   transform: scale(1.08);
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  .stopwatch {
+    width: auto;
+    padding: 5px;
+  }
+  .calculator-container {
+    height: 355px;
+    padding: 5px;
+  }
+}
