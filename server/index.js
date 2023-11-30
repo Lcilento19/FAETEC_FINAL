@@ -26,8 +26,7 @@ app.get("/", (req, res) => {
 
 app.get("/generate-text", (req, res) => {
   res.status(200).json({
-    message:
-      "The get method cannot be used in this route",
+    message: "The get method cannot be used in this route",
   });
 });
 const conversation = [];
