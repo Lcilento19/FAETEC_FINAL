@@ -112,7 +112,7 @@ function Login() {
           className="button-google"
         >
           <img src="google_login.png" alt="" className="google_login_image" />
-          SignIn with Google
+          Entrar com o google
         </button>
       </form>
 
