@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
 
-import dotenv from "dotenv"; 
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -18,13 +18,16 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Welcome to the OpenAI API" });
+  res.status(200).json({
+    message:
+      "Bem vindo aos serviços multi para acessar a função de chat use: https://chat-api-multi.onrender.com//generate-text ",
+  });
 });
 const conversation = [];
 
 app.post("/generate-text", async (req, res) => {
   try {
-    const prompt = String(req.body.prompt); 
+    const prompt = String(req.body.prompt);
 
     conversation.push({ role: "user", content: prompt });
 
@@ -36,9 +39,12 @@ app.post("/generate-text", async (req, res) => {
       ],
     });
 
-    const assistantMessage = String(response.choices[0]?.message?.content); 
+    const assistantMessage = String(response.choices[0]?.message?.content);
     if (!assistantMessage) {
-      console.error("Resposta da API não contém a propriedade 'text'. Resposta completa:", response);
+      console.error(
+        "Resposta da API não contém a propriedade 'text'. Resposta completa:",
+        response
+      );
       res.status(500).json({ error: "Something went wrong" });
       return;
     }
@@ -51,8 +57,6 @@ app.post("/generate-text", async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 });
-
-
 
 app.listen(port, () => {
   console.log("\x1b[33m%s\x1b[0m", `[API] Iniciando...`);
