@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
 
-import dotenv from "dotenv"; // Importe o dotenv
+import dotenv from "dotenv"; 
 
 dotenv.config();
 
@@ -24,7 +24,7 @@ const conversation = [];
 
 app.post("/generate-text", async (req, res) => {
   try {
-    const prompt = String(req.body.prompt); // Converte para string
+    const prompt = String(req.body.prompt); 
 
     conversation.push({ role: "user", content: prompt });
 
@@ -36,7 +36,7 @@ app.post("/generate-text", async (req, res) => {
       ],
     });
 
-    const assistantMessage = String(response.choices[0]?.message?.content); // Converte para string
+    const assistantMessage = String(response.choices[0]?.message?.content); 
     if (!assistantMessage) {
       console.error("Resposta da API não contém a propriedade 'text'. Resposta completa:", response);
       res.status(500).json({ error: "Something went wrong" });
