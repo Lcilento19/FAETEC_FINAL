@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
-
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -14,30 +13,39 @@ const openai = new OpenAI({
 });
 
 app.use(cors());
-
 app.use(express.json());
+
+app.use((req, res, next) => {
+  req.openai = openai;
+  next();
+});
+
+function handleApiError(res, errorMessage, response) {
+  console.error(errorMessage, response);
+  res.status(500).json({ error: "Something went wrong" });
+}
 
 app.get("/", (req, res) => {
   res.status(200).json({
     message:
-      "Welcome to Multi services. Use the correct route : https://chat-api-multi.onrender.com/generate-text",
+      "Welcome to Multi services. Use the correct route: https://chat-api-multi.onrender.com/generate-text",
   });
 });
 
 app.get("/generate-text", (req, res) => {
-  res.status(200).json({
-    message: "The get method cannot be used in this route",
+  res.status(405).json({
+    error: "The GET method is not allowed on this route",
   });
 });
+
 const conversation = [];
 
 app.post("/generate-text", async (req, res) => {
   try {
     const prompt = String(req.body.prompt);
-
     conversation.push({ role: "user", content: prompt });
 
-    const response = await openai.chat.completions.create({
+    const response = await req.openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are a helpful assistant." },
@@ -47,11 +55,11 @@ app.post("/generate-text", async (req, res) => {
 
     const assistantMessage = String(response.choices[0]?.message?.content);
     if (!assistantMessage) {
-      console.error(
-        "Resposta da API não contém a propriedade 'text'. Resposta completa:",
+      handleApiError(
+        res,
+        "Resposta da API não contém a propriedade 'text'.",
         response
       );
-      res.status(500).json({ error: "Something went wrong" });
       return;
     }
 
@@ -59,15 +67,11 @@ app.post("/generate-text", async (req, res) => {
 
     res.status(200).json({ text: assistantMessage });
   } catch (error) {
-    console.error("Erro na rota /generate-text:", error);
-    res.status(500).json({ error: "Something went wrong" });
+    handleApiError(res, "Erro na rota /generate-text:", error);
   }
 });
 
 app.listen(port, () => {
-  console.log("\x1b[33m%s\x1b[0m", `[API] Iniciando...`);
-  setTimeout(() => {
-    console.clear();
-    console.log("\x1b[32m%s\x1b[0m", `[Api] Server is running on port ${port}`);
-  }, 3000);
+  console.log("\x1b[33m%s\x1b[0m", "[API] Iniciando...");
+  console.log("\x1b[32m%s\x1b[0m", `[Api] Server is running on port ${port}`);
 });

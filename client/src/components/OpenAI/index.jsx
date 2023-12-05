@@ -53,16 +53,13 @@ function OpenAI() {
   const handleGenerateText = async () => {
     try {
       const requestBody = { prompt: String(prompt) };
-      const response = await fetch(
-        "https://multiapichat.squareweb.app/generate-text",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
+      const response = await fetch("http://localhost:3001/generate-text", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
 
       const responseData = await response.json();
 
