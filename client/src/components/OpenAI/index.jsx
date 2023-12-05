@@ -54,7 +54,7 @@ function OpenAI() {
     try {
       const requestBody = { prompt: String(prompt) };
       const response = await fetch(
-        "https://chat-api-multi.onrender.com/generate-text",
+        "http://192.168.1.66:3001/generate-text",
         {
           method: "POST",
           headers: {
