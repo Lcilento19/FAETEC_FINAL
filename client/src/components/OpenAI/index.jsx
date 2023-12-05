@@ -54,7 +54,7 @@ function OpenAI() {
     try {
       const requestBody = { prompt: String(prompt) };
       const response = await fetch(
-        "http://192.168.1.66:3001/generate-text",
+        "https://multiapichat.squareweb.app/generate-text",
         {
           method: "POST",
           headers: {
