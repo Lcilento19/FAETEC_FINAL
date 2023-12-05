@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://chat-api-multi.onrender.com",
+        target: "http://192.168.1.66:3001/generate-text",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
